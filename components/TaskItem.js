@@ -1,23 +1,26 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, useColorScheme } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
-
+import { COLORS } from '../color';
 
 export default TaskItem = (props) => {
 
+    let colorScheme = useColorScheme();
+    var theme = colorScheme === 'dark' ? COLORS.dark : COLORS.light
+
     return (
         <View style={styles.container}>
-            <View style={styles.taskContainer}>
+            <View style={[styles.taskContainer, {backgroundColor: theme.background, borderColor: theme.secondary}]}>
                 <TouchableOpacity onPress={() => props.markTask()} >
-                    <View style={styles.square}>
+                    <View style={[styles.square,{backgroundColor: theme.secondary}]}>
                     {
                         props.task.completed ? 
-                        <MaterialIcons name="check" size={18} color={'#fff'} /> :
+                        <MaterialIcons name="check" size={18} color={theme.ico} /> :
                         <Text></Text>
                     }
                     </View>
                 </TouchableOpacity>
-                <Text style={styles.task}>{props.task.label}</Text>
+                <Text style={[styles.task, {color: theme.text}]}>{props.task.label}</Text>
                 <TouchableOpacity onPress={() => props.deleteTask()}>
                         <MaterialIcons name="delete" size={18} color={'red'} />
                 </TouchableOpacity>
@@ -34,15 +37,12 @@ const styles = StyleSheet.create({
     square: {
         width: 24,
         height: 24,
-        backgroundColor: '#5f6c80',
         borderRadius: 5,
         marginRight: 15,
         justifyContent: 'center',
         alignItems: 'center',
     },
     taskContainer: {
-        backgroundColor: '#fff',
-        borderColor: '#5f6c80',
         borderLeftWidth: 4,
         flexDirection: 'row',
         alignItems: 'center',
@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
         paddingVertical: 15,    
     },
     task: {
-        color: '#5f6c80',
         width: '80%',
         paddingRight: 2,
         fontSize: 15,
