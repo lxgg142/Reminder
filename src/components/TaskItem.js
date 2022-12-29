@@ -21,7 +21,7 @@ export default TaskItem = (props) => {
                 </TouchableOpacity>
                 <Text style={[styles.task, {color: theme.text}]}>{props.task.label}</Text>
                 <TouchableOpacity onPress={() => props.deleteTask()}>
-                        <MaterialIcons name="delete" size={18} color={'red'} />
+                        <MaterialIcons name="delete" size={18} color={theme.del} />
                 </TouchableOpacity>
             </View>
         </View>

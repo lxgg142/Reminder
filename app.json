@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Simple-Todo",
-    "slug": "Simple-Todo",
+    "name": "Simple Todo",
+    "slug": "Simple Todo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,7 +20,7 @@
     "ios": {
       "supportsTablet": true,
       "userInterfaceStyle": "automatic",
-      "bundleIdentifier": "com.andygerome.SimpleTodo"
+      "bundleIdentifier": "com.abergner.SimpleTodo"
     },
     "android": {
       "adaptiveIcon": {
@@ -28,7 +28,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "userInterfaceStyle": "automatic",
-      "package": "com.andygerome.SimpleTodo"
+      "package": "com.abergner.SimpleTodo"
     },
     "web": {
       "favicon": "./assets/favicon.png"

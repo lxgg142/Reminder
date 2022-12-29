@@ -4,13 +4,15 @@ export const COLORS = {
         secondary: '#8a9ab0',
         text: '#fff',
         sep: '#2d3748',
-        ico: '#000'
+        ico: '#000',
+        del: '#dc2626'
     }, 
     light: {
         background: '#fff',
         secondary: '#5f6c80',
         text: '#2d3748',
         sep: '#cbd5e0',
-        ico: '#fff'
+        ico: '#fff',
+        del: '#ef4444'
     },
 }
