@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Simple Todo",
-    "slug": "Simple Todo",
+    "slug": "Simple-Todo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,7 +12,8 @@
       "backgroundColor": "#FFFFFF"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/9f36cabe-2c66-4a53-b8d8-21ce0b07423b"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -37,6 +38,9 @@
       "eas": {
         "projectId": "9f36cabe-2c66-4a53-b8d8-21ce0b07423b"
       }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }
