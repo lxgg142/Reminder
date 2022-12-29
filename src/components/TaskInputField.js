@@ -7,7 +7,6 @@ import {
   useColorScheme,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { ThemeContext } from '../context/ThemeContext';
 import { COLORS } from '../color';
 
 

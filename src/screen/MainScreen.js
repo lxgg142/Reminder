@@ -14,8 +14,8 @@ import TaskInputField from '../components/TaskInputField';
 import TaskItem from '../components/TaskItem';
 
 import { useHeaderHeight } from '@react-navigation/elements'
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLORS } from '../color';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function MainScreen() {
