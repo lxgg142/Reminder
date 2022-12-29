@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import MainScreen from '../screen/MainScreen';
 import SplashScreen from '../screen/SplashScreen';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useColorScheme } from "react-native";
-import { COLORS } from '../color';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
 
-    let colorScheme = useColorScheme();
-    var theme = colorScheme === 'dark' ? COLORS.dark : COLORS.light
+    const {theme} = useContext(ThemeContext);
 
     return (
         <NavigationContainer>

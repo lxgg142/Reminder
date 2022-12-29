@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   StyleSheet,
   View,
   TextInput,
   TouchableOpacity,
-  useColorScheme,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { COLORS } from '../color';
+import { ThemeContext } from '../context/ThemeContext';
 
 
 export default TaskInputField = (props) => {
 
-    let colorScheme = useColorScheme();
-
-    var theme = colorScheme === 'dark' ? COLORS.dark : COLORS.light
+    const {theme} = useContext(ThemeContext);
 
 
     const [task, setTask] = useState();

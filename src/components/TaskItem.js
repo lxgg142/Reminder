@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, useColorScheme } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
-import { COLORS } from '../color';
+import { ThemeContext } from '../context/ThemeContext';
 
 export default TaskItem = (props) => {
 
-    let colorScheme = useColorScheme();
-    var theme = colorScheme === 'dark' ? COLORS.dark : COLORS.light
+    const {theme} = useContext(ThemeContext)
 
     return (
         <View style={styles.container}>

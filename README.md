@@ -12,3 +12,4 @@ Simple-Todo ist eine to-do-Liste Anwendung, die es Benutzern erm√∂glicht, Eintr√
 ## Changes
 
 - Projekt reorganisiert
+- ThemeContext

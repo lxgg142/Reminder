@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -7,15 +7,14 @@ import {
   StyleSheet,
   FlatList,
   Platform,
-  useColorScheme,
 } from 'react-native';
 
 import TaskInputField from '../components/TaskInputField';
 import TaskItem from '../components/TaskItem';
 
 import { useHeaderHeight } from '@react-navigation/elements'
-import { COLORS } from '../color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ThemeContext } from '../context/ThemeContext';
 
 
 export default function MainScreen() {
@@ -23,9 +22,7 @@ export default function MainScreen() {
   const headerHeight = useHeaderHeight()
   const [tasks, setTasks] = useState([]);
 
-  let colorScheme = useColorScheme();
-
-  var theme = colorScheme === 'dark' ? COLORS.dark : COLORS.light
+  const {theme} = useContext(ThemeContext);
 
   React.useEffect(() => {
     getTasksFromUserDevice();
