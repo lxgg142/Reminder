@@ -12,7 +12,3 @@ Simple-Todo ist eine to-do-Liste Anwendung, die es Benutzern erm√∂glicht, Eintr√
 ## Changes
 
 - App Icons
-
-## Bug fixes
-
-- erstellen von leeren Todo's (nicht im neusten release behoben!)
