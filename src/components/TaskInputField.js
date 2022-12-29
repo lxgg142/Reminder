@@ -17,6 +17,7 @@ export default TaskInputField = (props) => {
     const [task, setTask] = useState();
 
     const handleAddTask = (value) => {
+        if (value == null) return
         props.addTask(value);
         setTask('');
     };
