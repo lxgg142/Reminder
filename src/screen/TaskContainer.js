@@ -26,14 +26,12 @@ export default function TaskContainer({ navigation }) {
   const { addTask, priorityState, changePriorityState, prioritys } =
     useContext(TaskContext);
 
-  const goBack = (value) => navigation.push(value);
+  const goBack = () => navigation.goBack();
 
   const handleAddTask = (value) => {
-    if (value == null) {
-      goBack("main");
-    }
+    if (value == null) return goBack();
     addTask(value);
-    goBack("main");
+    goBack();
     changePriorityState(prioritys.default);
     setTask("");
   };
