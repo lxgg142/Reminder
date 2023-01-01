@@ -12,4 +12,3 @@ Simple-Todo ist eine to-do-Liste Anwendung, die es Benutzern ermöglicht, Eintr�
 ## Changes
 
 - Todo Priorität (nicht im neusten release enthalten!)
-
