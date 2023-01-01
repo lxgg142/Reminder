@@ -8,21 +8,26 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { ThemeContext } from "../context/ThemeContext";
+import { TaskContext } from "../context/TaskContext";
 
 export default TaskItem = (props) => {
   const { theme, priority } = useContext(ThemeContext);
+  const { prioritys } = useContext(TaskContext);
 
   const [priorityState, setPriorityState] = useState(props.task.priority);
 
+  {
+    /**returns a color of priority in the themeContext based on the priority's state in the TaskContext*/
+  }
   const priorityColor = (state) => {
     switch (state) {
-      case "low":
+      case prioritys.low:
         return priority.low;
-      case "medium":
+      case prioritys.medium:
         return priority.medium;
-      case "high":
+      case prioritys.high:
         return priority.high;
-      case "default":
+      case prioritys.default:
         return priority.default;
       default:
         return priority.default;

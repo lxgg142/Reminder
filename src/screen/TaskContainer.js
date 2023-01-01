@@ -47,7 +47,12 @@ export default function TaskContainer({ navigation }) {
       <SafeAreaView style={styles.container}>
         {/**Header */}
         <View style={{ flexDirection: "row" }}>
-          <View style={styles.header}>
+          <View
+            style={[
+              styles.header,
+              { borderColor: theme.sep, borderBottomWidth: 1 },
+            ]}
+          >
             <Text
               style={{ fontSize: 20, fontWeight: "bold", color: theme.text }}
             >
