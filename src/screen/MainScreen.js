@@ -7,22 +7,32 @@ import {
   StyleSheet,
   FlatList,
   Platform,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  Modal,
 } from 'react-native';
 
-import TaskInputField from '../components/TaskInputField';
+
+import TaskAddModal from '../components/TaskAddModal';
 import TaskItem from '../components/TaskItem';
+
+import { MaterialIcons } from '@expo/vector-icons';
 
 import { useHeaderHeight } from '@react-navigation/elements'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ThemeContext } from '../context/ThemeContext';
 
 
-export default function MainScreen() {
+export default function MainScreen({navigation}) {
   
   const headerHeight = useHeaderHeight()
+  const {theme, priority} = useContext(ThemeContext);
+  
   const [tasks, setTasks] = useState([]);
+  const [priorityState, setPriorityState] = useState('default');
 
-  const {theme} = useContext(ThemeContext);
+  const [btrVisible, setBtrVisible] = useState(false);
 
   React.useEffect(() => {
     getTasksFromUserDevice();
@@ -38,9 +48,12 @@ export default function MainScreen() {
       id: Math.random(),
       label: task,
       completed: false,
+      priority: priorityState 
     };
     setTasks([...tasks, newTask]);
+    setPriorityState('default');
     Keyboard.dismiss();
+    setBtrVisible(!btrVisible)
   };
 
   const markTask = (taskID) => {
@@ -84,8 +97,7 @@ export default function MainScreen() {
 
   const saveTasksToUserDevice = async (tasks) => {
     try {
-      const stringifyTasks = JSON.stringify(tasks);
-      await AsyncStorage.setItem('tasks', stringifyTasks);
+      await AsyncStorage.setItem('tasks', JSON.stringify(tasks));
     } catch (error) {
       console.log(error);
     }
@@ -107,31 +119,55 @@ export default function MainScreen() {
       style={styles.container}
       keyboardVerticalOffset={headerHeight}
       {...(Platform.OS === 'ios' ? { behavior: 'padding' } : {})}>
-      <FlatList
-        data={tasks}
-        ItemSeparatorComponent={() => {
-          return <View style={[styles.Separator, {backgroundColor: theme.sep}]}></View>;
-        }}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item }, index) => {
-          
-          return (
-              <TaskItem
-                index={index + 1}
-                task={item}
-                deleteTask={() => deleteTask(item.id)}
-                markTask={() => {
-                  if (item.completed == false) {
-                    markTask(item.id);
-                  } else {
-                    unMarkTask(item.id);
-                  }
-                }}
-              />
-          );
-        }}
-      />
-      <TaskInputField addTask={addTask}/>
+        <Modal
+          visible={btrVisible}
+        >
+          <TaskAddModal addTask={addTask} setPriority={setPriorityState} setBtr={setBtrVisible} currentPriorityState={priorityState}/>
+        </Modal>
+        <SafeAreaView style={styles.container}>
+          <View style={{flexDirection: 'row'}}>
+            <View 
+              style={{
+                alignItems: 'center', 
+                flex: 1, 
+                flexDirection: 'row', 
+                justifyContent: 'space-between',
+                paddingVertical: 20,
+                paddingHorizontal: 30,
+                borderBottomColor: theme.sep,
+                borderBottomWidth: 1
+              }}>
+              <Text style={{fontSize: 20, fontWeight: 'bold', color: theme.text}}>Simple Todo</Text>
+              <TouchableOpacity onPress={() => setBtrVisible(!btrVisible)}>
+                <MaterialIcons name="add" size={24} color={theme.text}/>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <FlatList
+            data={tasks}
+            ItemSeparatorComponent={() => {
+              return <View style={[styles.Separator, {backgroundColor: theme.sep}]}></View>;
+            }}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item }, index) => {
+              
+              return (
+                  <TaskItem
+                    index={index + 1}
+                    task={item}
+                    deleteTask={() => deleteTask(item.id)}
+                    markTask={() => {
+                      if (item.completed == false) {
+                        markTask(item.id);
+                      } else {
+                        unMarkTask(item.id);
+                      }
+                    }}
+                  />
+              );
+            }}
+          />
+        </SafeAreaView>
     </KeyboardAvoidingView>
   );
 
