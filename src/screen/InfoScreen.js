@@ -6,12 +6,15 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   TouchableOpacity,
+  ScrollView,
+  Platform,
 } from "react-native";
 import React, { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const { appinfo } = require("../config.json");
+import * as Application from "expo-application";
+import * as Device from "expo-device";
 
 export default function InfoScreen({ navigation }) {
   const { theme, scheme } = useContext(ThemeContext);
@@ -21,10 +24,7 @@ export default function InfoScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
-      <KeyboardAvoidingView
-        style={styles.container}
-        {...(Platform.OS === "ios" ? { behavior: "padding" } : {})}
-      >
+      <View style={styles.container}>
         {/**header */}
         <View style={{ flexDirection: "row" }}>
           <View
@@ -48,77 +48,136 @@ export default function InfoScreen({ navigation }) {
           </View>
         </View>
         {/**content */}
-        <View style={{ paddingHorizontal: 10 }}>
-          <View style={styles.items}>
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "bold",
-                paddingVertical: 10,
-                color: theme.text,
-              }}
-            >
-              Theme
-            </Text>
-            <View
-              style={{
-                marginTop: 5,
-                borderColor: theme.sep,
-                borderWidth: 1,
-                borderRadius: 15,
-              }}
-            >
-              <View style={styles.item}>
-                <Text style={{ color: theme.text }}>
-                  Aktuell: {String(scheme).toUpperCase()}
-                </Text>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={{ paddingHorizontal: 10, marginBottom: 20 }}>
+            <View style={styles.items}>
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "bold",
+                  paddingVertical: 10,
+                  color: theme.text,
+                }}
+              >
+                Theme
+              </Text>
+              <View
+                style={{
+                  marginTop: 5,
+                  borderColor: theme.sep,
+                  borderWidth: 1,
+                  borderRadius: 15,
+                }}
+              >
+                <View style={styles.item}>
+                  <Text style={{ color: theme.text }}>
+                    Aktuell: {String(scheme).toUpperCase()}
+                  </Text>
+                </View>
+              </View>
+            </View>
+
+            <View style={styles.items}>
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "bold",
+                  paddingVertical: 10,
+                  color: theme.text,
+                }}
+              >
+                App Info
+              </Text>
+              <View
+                style={{
+                  marginTop: 5,
+                  borderColor: theme.sep,
+                  borderWidth: 1,
+                  borderRadius: 15,
+                }}
+              >
+                <View style={styles.item}>
+                  <Text style={{ color: theme.text }}>
+                    Name: {Application.applicationName}
+                  </Text>
+                </View>
+                <View style={{ backgroundColor: theme.sep, height: 1 }} />
+                <View style={styles.item}>
+                  <Text style={{ color: theme.text }}>
+                    Version: {Application.nativeApplicationVersion}
+                  </Text>
+                </View>
+                <View style={{ backgroundColor: theme.sep, height: 1 }} />
+                <View style={styles.item}>
+                  <Text style={{ color: theme.text }}>
+                    Build Version: {Application.nativeBuildVersion}
+                  </Text>
+                </View>
+                <View style={{ backgroundColor: theme.sep, height: 1 }} />
+                <View style={styles.item}>
+                  <Text style={{ color: theme.secondary }}>
+                    ©{" "}
+                    {Application.applicationName +
+                      " " +
+                      new Date().getFullYear()}
+                  </Text>
+                </View>
+              </View>
+            </View>
+
+            <View style={styles.items}>
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "bold",
+                  paddingVertical: 10,
+                  color: theme.text,
+                }}
+              >
+                Handy Information
+              </Text>
+              <View
+                style={{
+                  marginTop: 5,
+                  borderColor: theme.sep,
+                  borderWidth: 1,
+                  borderRadius: 15,
+                }}
+              >
+                <View style={styles.item}>
+                  <Text style={{ color: theme.text }}>
+                    Brand: {Device.brand}
+                  </Text>
+                </View>
+                {Platform.OS == "ios" ? (
+                  <>
+                    <View style={{ backgroundColor: theme.sep, height: 1 }} />
+                    <View style={styles.item}>
+                      <Text style={{ color: theme.text }}>
+                        Model ID: {Device.modelId}
+                      </Text>
+                    </View>
+                  </>
+                ) : (
+                  <></>
+                )}
+                <View style={{ backgroundColor: theme.sep, height: 1 }} />
+                <View style={styles.item}>
+                  <Text style={{ color: theme.text }}>
+                    Model Name: {Device.modelName}
+                  </Text>
+                </View>
+                <View style={{ backgroundColor: theme.sep, height: 1 }} />
+                <View style={styles.item}>
+                  <Text style={{ color: theme.text }}>
+                    OS Version: {Device.osVersion}
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
-          <View style={styles.items}>
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "bold",
-                paddingVertical: 10,
-                color: theme.text,
-              }}
-            >
-              App Info
-            </Text>
-            <View
-              style={{
-                marginTop: 5,
-                borderColor: theme.sep,
-                borderWidth: 1,
-                borderRadius: 15,
-              }}
-            >
-              <View style={styles.item}>
-                <Text style={{ color: theme.text }}>Name: {appinfo.name}</Text>
-              </View>
-              <View style={{ backgroundColor: theme.sep, height: 1 }} />
-              <View style={styles.item}>
-                <Text style={{ color: theme.text }}>
-                  Version: {appinfo.version}
-                </Text>
-              </View>
-              <View style={{ backgroundColor: theme.sep, height: 1 }} />
-              <View style={styles.item}>
-                <Text style={{ color: theme.text }}>
-                  Release: {appinfo.release}
-                </Text>
-              </View>
-              <View style={{ backgroundColor: theme.sep, height: 1 }} />
-              <View style={styles.item}>
-                <Text style={{ color: theme.secondary }}>
-                  © {appinfo.name + " " + new Date().getFullYear()}
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-      </KeyboardAvoidingView>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
