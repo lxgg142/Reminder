@@ -1,13 +1,13 @@
 import {
   View,
   Text,
-  FlatList,
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  StatusBar,
 } from "react-native";
 
 import React, { useContext, useState } from "react";
@@ -15,13 +15,10 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { TaskContext } from "../context/TaskContext";
 import { useHeaderHeight } from "@react-navigation/elements";
 import { ThemeContext } from "../context/ThemeContext";
-import TaskItem from "../components/TaskItem";
 
-export default function TaskContainer({ navigation }) {
-  const headerHight = useHeaderHeight();
-
+export default function TaskScreen({ navigation }) {
   const { theme, priority } = useContext(ThemeContext);
-  const [task, setTask] = useState();
+  const [task, setTask] = useState("");
 
   const { addTask, priorityState, changePriorityState, prioritys } =
     useContext(TaskContext);
@@ -29,7 +26,7 @@ export default function TaskContainer({ navigation }) {
   const goBack = () => navigation.goBack();
 
   const handleAddTask = (value) => {
-    if (value == null) return goBack();
+    if (value == null || value == "") return goBack();
     addTask(value);
     goBack();
     changePriorityState(prioritys.default);
@@ -37,18 +34,22 @@ export default function TaskContainer({ navigation }) {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      keyboardVerticalOffset={headerHight}
-      {...(Platform.OS === "ios" ? { behavior: "padding" } : {})}
-    >
-      <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar />
+      <KeyboardAvoidingView
+        style={styles.container}
+        {...(Platform.OS === "ios" ? { behavior: "padding" } : {})}
+      >
         {/**Header */}
         <View style={{ flexDirection: "row" }}>
           <View
             style={[
               styles.header,
-              { borderColor: theme.sep, borderBottomWidth: 1 },
+              {
+                borderColor: theme.sep,
+                borderBottomWidth: 1,
+                marginTop: StatusBar.currentHeight,
+              },
             ]}
           >
             <Text
@@ -72,7 +73,9 @@ export default function TaskContainer({ navigation }) {
             <TextInput
               style={[styles.inputField, { color: theme.text }]}
               value={task}
-              onChangeText={(text) => setTask(text)}
+              onChangeText={(text) => {
+                setTask(text);
+              }}
               placeholder={"Schreib eine Aufgabe"}
               placeholderTextColor={theme.secondary}
               selectionColor={theme.secondary}
@@ -159,8 +162,8 @@ export default function TaskContainer({ navigation }) {
             }}
           ></View>
         </View>
-      </SafeAreaView>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 

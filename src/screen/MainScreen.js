@@ -7,34 +7,65 @@ import {
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
+  StatusBar,
 } from "react-native";
 
 import React, { useContext } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TaskContext } from "../context/TaskContext";
-import { useHeaderHeight } from "@react-navigation/elements";
 import { ThemeContext } from "../context/ThemeContext";
 import TaskItem from "../components/TaskItem";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function MainScreen({ navigation }) {
-  const headerHight = useHeaderHeight();
-
   const { theme } = useContext(ThemeContext);
-  const { tasks, deleteTask, markTask, unMarkTask } = useContext(TaskContext);
+  const { tasks, deleteTask, markTask, unMarkTask, setStoreTasks } =
+    useContext(TaskContext);
+
+  React.useEffect(() => {
+    getData();
+  }, []);
+
+  React.useEffect(() => {
+    storeData(tasks);
+  }, [tasks]);
+
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem("tasks", JSON.stringify(value));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const tasks = await AsyncStorage.getItem("tasks");
+      if (tasks != null) {
+        setStoreTasks(JSON.parse(tasks));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      keyboardVerticalOffset={headerHight}
-      {...(Platform.OS === "ios" ? { behavior: "padding" } : {})}
-    >
-      <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar />
+      <KeyboardAvoidingView
+        style={styles.container}
+        {...(Platform.OS === "ios" ? { behavior: "padding" } : {})}
+      >
         {/**header */}
         <View style={{ flexDirection: "row" }}>
           <View
             style={[
               styles.header,
-              { borderColor: theme.sep, borderBottomWidth: 1 },
+              {
+                borderColor: theme.sep,
+                borderBottomWidth: 1,
+                marginTop: StatusBar.currentHeight,
+              },
             ]}
           >
             <Text
@@ -75,8 +106,8 @@ export default function MainScreen({ navigation }) {
             );
           }}
         />
-      </SafeAreaView>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 

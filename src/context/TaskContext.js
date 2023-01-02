@@ -10,18 +10,15 @@ export const TaskProvider = ({ children }) => {
     default: "default",
   };
 
-  const item = {
-    id: 1,
-    label: "test",
-    completed: true,
-    priority: prioritys.low,
-  };
-
-  const [tasks, setTasks] = useState([item]);
+  const [tasks, setTasks] = useState([]);
   const [priorityState, setPriorityState] = useState(prioritys.default);
 
   const changePriorityState = (value) => {
     setPriorityState(value);
+  };
+
+  const setStoreTasks = (value) => {
+    setTasks(value);
   };
 
   const addTask = (value) => {
@@ -88,6 +85,7 @@ export const TaskProvider = ({ children }) => {
         tasks: tasks,
         priorityState: priorityState,
         changePriorityState,
+        setStoreTasks,
       }}
     >
       {children}

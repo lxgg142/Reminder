@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import MainScreen from "../screen/MainScreen";
 import SplashScreen from "../screen/SplashScreen";
-import TaskContainer from "../screen/TaskContainer";
+import TaskScreen from "../screen/TaskScreen";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -37,7 +37,7 @@ const Navigation = () => {
         />
         <Stack.Screen
           name="task"
-          component={TaskContainer}
+          component={TaskScreen}
           options={{
             title: "Simple Todo",
             headerStyle: {
