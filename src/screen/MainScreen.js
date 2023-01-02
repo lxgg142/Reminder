@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   StatusBar,
+  Pressable,
 } from "react-native";
 
 import React, { useContext } from "react";
@@ -68,14 +69,22 @@ export default function MainScreen({ navigation }) {
               },
             ]}
           >
-            <Text
-              style={{ fontSize: 20, fontWeight: "bold", color: theme.text }}
-            >
-              Simple Todo
-            </Text>
-            <TouchableOpacity onPress={() => navigation.push("task")}>
-              <MaterialIcons name="add" size={24} color={theme.text} />
-            </TouchableOpacity>
+            <Pressable onPress={() => navigation.push("info")}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  color: theme.text,
+                }}
+              >
+                Simple Todo
+              </Text>
+            </Pressable>
+            <View style={{ flexDirection: "row" }}>
+              <TouchableOpacity onPress={() => navigation.push("task")}>
+                <MaterialIcons name="add" size={24} color={theme.text} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
         {/**content */}
@@ -125,5 +134,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 20,
     paddingHorizontal: 30,
+  },
+  itemSpace: {
+    width: 10,
   },
 });
