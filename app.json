@@ -17,7 +17,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": falsemodified:   app.json,
       "userInterfaceStyle": "automatic",
       "bundleIdentifier": "com.abergner.SimpleTodo"
     },
