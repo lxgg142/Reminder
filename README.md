@@ -8,6 +8,7 @@ Simple-Todo ist eine to-do-Liste Anwendung, die es Benutzern ermöglicht, Eintr�
 - Löschen Sie Einträge, die nicht mehr benötigt werden.
 - Markieren Sie Einträge als abgeschlossen, wenn sie erledigt wurden.
 - Unterstützung für Systemthemes
+- Markieren Sie Einträge nach Priorität.
 
 ## Changes
 
