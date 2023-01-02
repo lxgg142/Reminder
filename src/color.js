@@ -9,7 +9,7 @@ export const COLORS = {
   },
   light: {
     background: "#fff",
-    secondary: "#5f6c80",
+    secondary: "#7289da",
     text: "#2d3748",
     sep: "#cbd5e0",
     ico: "#fff",

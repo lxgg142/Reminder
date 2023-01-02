@@ -13,7 +13,6 @@ import {
 import React, { useContext, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TaskContext } from "../context/TaskContext";
-import { useHeaderHeight } from "@react-navigation/elements";
 import { ThemeContext } from "../context/ThemeContext";
 
 export default function TaskScreen({ navigation }) {

@@ -12,7 +12,9 @@ export default TaskItem = (props) => {
 
   {
     /**returns a color of priority in the themeContext based on the priority's state in the TaskContext*/
+    /**prioritys.low: return string 'low' */
   }
+
   const priorityColor = (state) => {
     switch (state) {
       case prioritys.low:
