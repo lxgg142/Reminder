@@ -12,4 +12,4 @@ Simple-Todo ist eine to-do-Liste Anwendung, die es Benutzern ermöglicht, Eintr�
 
 ## Changes
 
-- Info Screen
+- Info Screen (Nicht im aktuellen Release enthalten! Verfügbar ab V1.2.0)
