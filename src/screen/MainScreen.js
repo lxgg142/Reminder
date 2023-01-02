@@ -17,6 +17,7 @@ import { TaskContext } from "../context/TaskContext";
 import { ThemeContext } from "../context/ThemeContext";
 import TaskItem from "../components/TaskItem";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Header from "../components/Header";
 
 export default function MainScreen({ navigation }) {
   const { theme } = useContext(ThemeContext);
@@ -51,51 +52,30 @@ export default function MainScreen({ navigation }) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{ flex: 1 }}>
       <StatusBar />
       <KeyboardAvoidingView
-        style={styles.container}
+        style={{ flex: 1 }}
         {...(Platform.OS === "ios" ? { behavior: "padding" } : {})}
       >
         {/**header */}
-        <View style={{ flexDirection: "row" }}>
-          <View
-            style={[
-              styles.header,
-              {
-                borderColor: theme.sep,
-                borderBottomWidth: 1,
-                marginTop: StatusBar.currentHeight,
-              },
-            ]}
-          >
-            <Pressable onPress={() => navigation.push("info")}>
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: "bold",
-                  color: theme.text,
-                }}
-              >
-                Simple Todo
-              </Text>
-            </Pressable>
-            <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity onPress={() => navigation.push("task")}>
-                <MaterialIcons name="add" size={24} color={theme.text} />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+        <Header>
+          <Pressable onPress={() => navigation.push("info")}>
+            <Text
+              style={{ fontSize: 20, fontWeight: "bold", color: theme.text }}
+            >
+              Simple Todo
+            </Text>
+          </Pressable>
+          <TouchableOpacity onPress={() => navigation.push("task")}>
+            <MaterialIcons name="add" size={24} color={theme.text} />
+          </TouchableOpacity>
+        </Header>
         {/**content */}
         <FlatList
           data={tasks}
           ItemSeparatorComponent={() => {
-            return (
-              <View
-                style={[styles.Separator, { backgroundColor: theme.sep }]}
-              ></View>
-            );
+            return <View style={{ backgroundColor: theme.sep, height: 1 }} />;
           }}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }, index) => {
@@ -119,23 +99,3 @@ export default function MainScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  Separator: {
-    height: 1,
-  },
-  header: {
-    alignItems: "center",
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 20,
-    paddingHorizontal: 30,
-  },
-  itemSpace: {
-    width: 10,
-  },
-});

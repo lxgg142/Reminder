@@ -1,18 +1,17 @@
+import React, { useContext } from "react";
 import {
   View,
   Text,
-  StyleSheet,
   SafeAreaView,
   StatusBar,
-  KeyboardAvoidingView,
   TouchableOpacity,
   ScrollView,
   Platform,
 } from "react-native";
-import React, { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import { MaterialIcons } from "@expo/vector-icons";
-
+import List, { ListItem, Separator } from "../components/List";
+import Header from "../components/Header";
 import * as Application from "expo-application";
 import * as Device from "expo-device";
 
@@ -22,187 +21,67 @@ export default function InfoScreen({ navigation }) {
   const goBack = () => navigation.goBack();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{ flex: 1 }}>
       <StatusBar />
-      <View style={styles.container}>
+      <View style={{ flex: 1 }}>
         {/**header */}
-        <View style={{ flexDirection: "row" }}>
-          <View
-            style={[
-              styles.header,
-              {
-                borderColor: theme.sep,
-                borderBottomWidth: 1,
-                marginTop: StatusBar.currentHeight,
-              },
-            ]}
-          >
-            <Text
-              style={{ fontSize: 20, fontWeight: "bold", color: theme.text }}
-            >
-              Info
-            </Text>
-            <TouchableOpacity onPress={() => goBack()}>
-              <MaterialIcons name={"close"} size={24} color={theme.text} />
-            </TouchableOpacity>
-          </View>
-        </View>
+        <Header>
+          <Text style={{ fontSize: 20, fontWeight: "bold", color: theme.text }}>
+            Info
+          </Text>
+          <TouchableOpacity onPress={() => goBack()}>
+            <MaterialIcons name={"close"} size={24} color={theme.text} />
+          </TouchableOpacity>
+        </Header>
         {/**content */}
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{ paddingHorizontal: 10, marginBottom: 20 }}>
-            <View style={styles.items}>
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "bold",
-                  paddingVertical: 10,
-                  color: theme.text,
-                }}
-              >
-                Theme
-              </Text>
-              <View
-                style={{
-                  marginTop: 5,
-                  borderColor: theme.sep,
-                  borderWidth: 1,
-                  borderRadius: 15,
-                }}
-              >
-                <View style={styles.item}>
-                  <Text style={{ color: theme.text }}>
-                    Aktuell: {String(scheme).toUpperCase()}
-                  </Text>
-                </View>
-              </View>
-            </View>
+            <List title="Theme">
+              <ListItem title="Aktuell:" value={String(scheme).toUpperCase()} />
+            </List>
 
-            <View style={styles.items}>
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "bold",
-                  paddingVertical: 10,
-                  color: theme.text,
-                }}
-              >
-                App Info
-              </Text>
-              <View
-                style={{
-                  marginTop: 5,
-                  borderColor: theme.sep,
-                  borderWidth: 1,
-                  borderRadius: 15,
-                }}
-              >
-                <View style={styles.item}>
-                  <Text style={{ color: theme.text }}>
-                    Name: {Application.applicationName}
-                  </Text>
-                </View>
-                <View style={{ backgroundColor: theme.sep, height: 1 }} />
-                <View style={styles.item}>
-                  <Text style={{ color: theme.text }}>
-                    Version: {Application.nativeApplicationVersion}
-                  </Text>
-                </View>
-                <View style={{ backgroundColor: theme.sep, height: 1 }} />
-                <View style={styles.item}>
-                  <Text style={{ color: theme.text }}>
-                    Build Version: {Application.nativeBuildVersion}
-                  </Text>
-                </View>
-                <View style={{ backgroundColor: theme.sep, height: 1 }} />
-                <View style={styles.item}>
-                  <Text style={{ color: theme.secondary }}>
-                    ©{" "}
-                    {Application.applicationName +
-                      " " +
-                      new Date().getFullYear()}
-                  </Text>
-                </View>
-              </View>
-            </View>
+            <List title="App Information">
+              <ListItem title="Name:" value={Application.applicationName} />
+              <Separator />
+              <ListItem
+                title="Version:"
+                value={Application.nativeApplicationVersion}
+              />
+              <Separator />
+              <ListItem
+                title="Build Version:"
+                value={Application.nativeBuildVersion}
+              />
+              <Separator />
+              <ListItem
+                color={theme.secondary}
+                title={
+                  "© " +
+                  Application.applicationName +
+                  " " +
+                  new Date().getFullYear()
+                }
+              />
+            </List>
 
-            <View style={styles.items}>
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "bold",
-                  paddingVertical: 10,
-                  color: theme.text,
-                }}
-              >
-                Handy Information
-              </Text>
-              <View
-                style={{
-                  marginTop: 5,
-                  borderColor: theme.sep,
-                  borderWidth: 1,
-                  borderRadius: 15,
-                }}
-              >
-                <View style={styles.item}>
-                  <Text style={{ color: theme.text }}>
-                    Brand: {Device.brand}
-                  </Text>
-                </View>
-                {Platform.OS == "ios" ? (
-                  <>
-                    <View style={{ backgroundColor: theme.sep, height: 1 }} />
-                    <View style={styles.item}>
-                      <Text style={{ color: theme.text }}>
-                        Model ID: {Device.modelId}
-                      </Text>
-                    </View>
-                  </>
-                ) : (
-                  <></>
-                )}
-                <View style={{ backgroundColor: theme.sep, height: 1 }} />
-                <View style={styles.item}>
-                  <Text style={{ color: theme.text }}>
-                    Model Name: {Device.modelName}
-                  </Text>
-                </View>
-                <View style={{ backgroundColor: theme.sep, height: 1 }} />
-                <View style={styles.item}>
-                  <Text style={{ color: theme.text }}>
-                    OS Version: {Device.osVersion}
-                  </Text>
-                </View>
-              </View>
-            </View>
+            <List title="Handy Information">
+              <ListItem title="Brand:" value={Device.brand} />
+              {Platform.OS == "ios" ? (
+                <>
+                  <Separator />
+                  <ListItem title="Model ID:" value={Device.modelId} />
+                </>
+              ) : (
+                <></>
+              )}
+              <Separator />
+              <ListItem title="Model Name:" value={Device.modelName} />
+              <Separator />
+              <ListItem title="OS Version:" value={Device.osVersion} />
+            </List>
           </View>
         </ScrollView>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  items: {
-    paddingHorizontal: 20,
-    marginTop: 20,
-    marginBottom: 10,
-  },
-  item: {
-    minHeight: 50,
-    justifyContent: "center",
-    marginLeft: 15,
-    paddingVertical: 15,
-  },
-  header: {
-    alignItems: "center",
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 20,
-    paddingHorizontal: 30,
-  },
-});

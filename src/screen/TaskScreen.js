@@ -14,6 +14,7 @@ import React, { useContext, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TaskContext } from "../context/TaskContext";
 import { ThemeContext } from "../context/ThemeContext";
+import Header from "../components/Header";
 
 export default function TaskScreen({ navigation }) {
   const { theme, priority } = useContext(ThemeContext);
@@ -40,32 +41,18 @@ export default function TaskScreen({ navigation }) {
         {...(Platform.OS === "ios" ? { behavior: "padding" } : {})}
       >
         {/**Header */}
-        <View style={{ flexDirection: "row" }}>
-          <View
-            style={[
-              styles.header,
-              {
-                borderColor: theme.sep,
-                borderBottomWidth: 1,
-                marginTop: StatusBar.currentHeight,
-              },
-            ]}
-          >
-            <Text
-              style={{ fontSize: 20, fontWeight: "bold", color: theme.text }}
-            >
-              Neues Todo
-            </Text>
-            <TouchableOpacity onPress={() => handleAddTask(task)}>
-              {task ? (
-                <MaterialIcons name="add" size={24} color={theme.text} />
-              ) : (
-                <MaterialIcons name="close" size={24} color={theme.text} />
-              )}
-            </TouchableOpacity>
-          </View>
-        </View>
-
+        <Header>
+          <Text style={{ fontSize: 20, fontWeight: "bold", color: theme.text }}>
+            Neues Todo
+          </Text>
+          <TouchableOpacity onPress={() => handleAddTask(task)}>
+            {task ? (
+              <MaterialIcons name="add" size={24} color={theme.text} />
+            ) : (
+              <MaterialIcons name="close" size={24} color={theme.text} />
+            )}
+          </TouchableOpacity>
+        </Header>
         {/**content */}
         <View style={{ paddingHorizontal: 10 }}>
           <View>
