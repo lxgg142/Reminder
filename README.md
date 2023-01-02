@@ -15,7 +15,7 @@ Simple-Todo ist eine to-do-Liste Anwendung, die es Benutzern erm√∂glicht, Eintr√
 
 ## Patches
 
-(Nicht im aktuellen Build enthalten! Gepatcht in Version: v1.1.1)
+(Nicht im aktuellen Release enthalten! Gepatcht in Version: v1.1.1)
 
 - Statusbar height (android build)
 - Erstellen von leeren aufgaben!
