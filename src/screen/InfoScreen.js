@@ -107,7 +107,7 @@ export default function InfoScreen({ navigation }) {
               />
               <Separator />
               <ListItem
-                title={language.info.phone.odVersion}
+                title={language.info.phone.osVersion}
                 value={Device.osVersion}
               />
             </List>

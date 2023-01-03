@@ -45,13 +45,17 @@ export const ListItem = ({ title, value, color }) => {
   );
 };
 
-export const SettingsItem = ({ title, value, color, onPress }) => {
+export const SettingsItem = ({ title, value, selected, onPress }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
     <TouchableOpacity onPress={onPress} style={styles.item}>
-      <Text style={{ color: color ? color : theme.text }}>{title}</Text>
-      <Text style={{ color: color ? color : theme.text }}>{value}</Text>
+      <Text style={{ color: selected ? theme.secondary : theme.text }}>
+        {title}
+      </Text>
+      <Text style={{ color: selected ? theme.secondary : theme.text }}>
+        {value}
+      </Text>
     </TouchableOpacity>
   );
 };

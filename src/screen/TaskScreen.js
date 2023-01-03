@@ -28,7 +28,7 @@ export default function TaskScreen({ navigation }) {
   const { language } = useContext(LanguageContext);
 
   const handleAddTask = (value) => {
-    if (value == null || value == "") return goBack();
+    if (/^\s*$/.test(task)) return goBack();
     addTask(value);
     goBack();
     changePriorityState(prioritys.default);
@@ -48,10 +48,10 @@ export default function TaskScreen({ navigation }) {
             {language.task.title}
           </Text>
           <TouchableOpacity onPress={() => handleAddTask(task)}>
-            {task ? (
-              <MaterialIcons name="add" size={24} color={theme.text} />
-            ) : (
+            {/^\s*$/.test(task) ? (
               <MaterialIcons name="close" size={24} color={theme.text} />
+            ) : (
+              <MaterialIcons name="add" size={24} color={theme.text} />
             )}
           </TouchableOpacity>
         </Header>

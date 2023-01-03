@@ -16,7 +16,6 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { TaskContext } from "../context/TaskContext";
 import { ThemeContext } from "../context/ThemeContext";
 import TaskItem from "../components/TaskItem";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import Header from "../components/Header";
 
 export default function MainScreen({ navigation }) {
