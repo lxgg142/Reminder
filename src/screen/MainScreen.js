@@ -21,35 +21,7 @@ import Header from "../components/Header";
 
 export default function MainScreen({ navigation }) {
   const { theme } = useContext(ThemeContext);
-  const { tasks, deleteTask, markTask, unMarkTask, setStoreTasks } =
-    useContext(TaskContext);
-
-  React.useEffect(() => {
-    getData();
-  }, []);
-
-  React.useEffect(() => {
-    storeData(tasks);
-  }, [tasks]);
-
-  const storeData = async (value) => {
-    try {
-      await AsyncStorage.setItem("tasks", JSON.stringify(value));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getData = async () => {
-    try {
-      const tasks = await AsyncStorage.getItem("tasks");
-      if (tasks != null) {
-        setStoreTasks(JSON.parse(tasks));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { tasks, deleteTask, markTask, unMarkTask } = useContext(TaskContext);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

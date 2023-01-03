@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 
@@ -6,16 +6,20 @@ const List = ({ children, title }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <View style={styles.items}>
-      <Text
-        style={{
-          fontSize: 15,
-          fontWeight: "bold",
-          paddingVertical: 10,
-          color: theme.text,
-        }}
-      >
-        {title}
-      </Text>
+      {title ? (
+        <Text
+          style={{
+            fontSize: 15,
+            fontWeight: "bold",
+            paddingVertical: 10,
+            color: theme.text,
+          }}
+        >
+          {title}
+        </Text>
+      ) : (
+        <></>
+      )}
       <View
         style={{
           marginTop: 5,
@@ -41,9 +45,33 @@ export const ListItem = ({ title, value, color }) => {
   );
 };
 
+export const SettingsItem = ({ title, value, color, onPress }) => {
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <TouchableOpacity onPress={onPress} style={styles.item}>
+      <Text style={{ color: color ? color : theme.text }}>{title}</Text>
+      <Text style={{ color: color ? color : theme.text }}>{value}</Text>
+    </TouchableOpacity>
+  );
+};
+
 export const Separator = () => {
   const { theme } = useContext(ThemeContext);
   return <View style={{ backgroundColor: theme.sep, height: 1 }} />;
+};
+
+export const SettingsButton = ({ title, color, onPress, children }) => {
+  const { theme } = useContext(ThemeContext);
+  return (
+    <TouchableOpacity onPress={onPress} style={styles.settingsItem}>
+      {children ? (
+        children
+      ) : (
+        <Text style={{ color: color ? color : theme.text }}>{title}</Text>
+      )}
+    </TouchableOpacity>
+  );
 };
 
 export default List;
@@ -63,5 +91,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     paddingVertical: 15,
     flexDirection: "row",
+    alignItems: "center",
+  },
+  settingsItem: {
+    minHeight: 50,
+    marginHorizontal: 15,
+    paddingVertical: 15,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

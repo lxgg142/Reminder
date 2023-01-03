@@ -10,13 +10,15 @@ import {
 } from "react-native";
 import { ThemeContext } from "../context/ThemeContext";
 import { MaterialIcons } from "@expo/vector-icons";
-import List, { ListItem, Separator } from "../components/List";
+import List, { ListItem, Separator, SettingsButton } from "../components/List";
 import Header from "../components/Header";
 import * as Application from "expo-application";
 import * as Device from "expo-device";
+import { LanguageContext } from "../context/Language";
 
 export default function InfoScreen({ navigation }) {
   const { theme, scheme } = useContext(ThemeContext);
+  const { language, currentLanguage } = useContext(LanguageContext);
 
   const goBack = () => navigation.goBack();
 
@@ -27,7 +29,7 @@ export default function InfoScreen({ navigation }) {
         {/**header */}
         <Header>
           <Text style={{ fontSize: 20, fontWeight: "bold", color: theme.text }}>
-            Info
+            {language.info.title}
           </Text>
           <TouchableOpacity onPress={() => goBack()}>
             <MaterialIcons name={"close"} size={24} color={theme.text} />
@@ -36,21 +38,32 @@ export default function InfoScreen({ navigation }) {
         {/**content */}
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{ paddingHorizontal: 10, marginBottom: 20 }}>
-            <List title="Theme">
-              <ListItem title="Aktuell:" value={String(scheme).toUpperCase()} />
+            <List title={language.info.theme.title}>
+              <ListItem
+                title={language.info.theme.current}
+                value={String(scheme).toUpperCase()}
+              />
             </List>
 
-            <List title="App Information">
-              <ListItem title="Name:" value={Application.applicationName} />
+            <List title={language.info.app.title}>
+              <ListItem
+                title={language.info.app.name}
+                value={Application.applicationName}
+              />
               <Separator />
               <ListItem
-                title="Version:"
+                title={language.info.app.version}
                 value={Application.nativeApplicationVersion}
               />
               <Separator />
               <ListItem
-                title="Build Version:"
+                title={language.info.app.build}
                 value={Application.nativeBuildVersion}
+              />
+              <Separator />
+              <ListItem
+                title={language.info.app.language}
+                value={String(currentLanguage).toUpperCase()}
               />
               <Separator />
               <ListItem
@@ -63,21 +76,40 @@ export default function InfoScreen({ navigation }) {
                 }
               />
             </List>
+            <List>
+              <SettingsButton
+                title={language.settings.title}
+                color={theme.del}
+                onPress={() => navigation.push("settings")}
+              />
+            </List>
 
-            <List title="Handy Information">
-              <ListItem title="Brand:" value={Device.brand} />
+            <List title={language.info.phone.title}>
+              <ListItem
+                title={language.info.phone.brand}
+                value={Device.brand}
+              />
               {Platform.OS == "ios" ? (
                 <>
                   <Separator />
-                  <ListItem title="Model ID:" value={Device.modelId} />
+                  <ListItem
+                    title={language.info.phone.modelID}
+                    value={Device.modelId}
+                  />
                 </>
               ) : (
                 <></>
               )}
               <Separator />
-              <ListItem title="Model Name:" value={Device.modelName} />
+              <ListItem
+                title={language.info.phone.model}
+                value={Device.modelName}
+              />
               <Separator />
-              <ListItem title="OS Version:" value={Device.osVersion} />
+              <ListItem
+                title={language.info.phone.odVersion}
+                value={Device.osVersion}
+              />
             </List>
           </View>
         </ScrollView>

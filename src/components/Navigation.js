@@ -4,15 +4,21 @@ import MainScreen from "../screen/MainScreen";
 import SplashScreen from "../screen/SplashScreen";
 import TaskScreen from "../screen/TaskScreen";
 import InfoScreen from "../screen/InfoScreen";
+import SettingsScreen from "../screen/SettingsScreen";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ThemeContext } from "../context/ThemeContext";
+import SettingsLoader from "../loader/SettingsLoader";
+import TaskLoader from "../loader/TaskLoader";
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   const { theme } = useContext(ThemeContext);
+
+  SettingsLoader();
+  TaskLoader();
 
   return (
     <NavigationContainer>
@@ -39,7 +45,7 @@ const Navigation = () => {
           name="task"
           component={TaskScreen}
           options={{
-            title: "Simple Todo",
+            title: "Task",
             headerStyle: {
               backgroundColor: theme.background,
             },
@@ -51,7 +57,19 @@ const Navigation = () => {
           name="info"
           component={InfoScreen}
           options={{
-            title: "Simple Todo",
+            title: "Info",
+            headerStyle: {
+              backgroundColor: theme.background,
+            },
+            headerTintColor: theme.text,
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="settings"
+          component={SettingsScreen}
+          options={{
+            title: "Settings",
             headerStyle: {
               backgroundColor: theme.background,
             },

@@ -15,6 +15,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { TaskContext } from "../context/TaskContext";
 import { ThemeContext } from "../context/ThemeContext";
 import Header from "../components/Header";
+import { LanguageContext } from "../context/Language";
 
 export default function TaskScreen({ navigation }) {
   const { theme, priority } = useContext(ThemeContext);
@@ -24,6 +25,7 @@ export default function TaskScreen({ navigation }) {
     useContext(TaskContext);
 
   const goBack = () => navigation.goBack();
+  const { language } = useContext(LanguageContext);
 
   const handleAddTask = (value) => {
     if (value == null || value == "") return goBack();
@@ -43,7 +45,7 @@ export default function TaskScreen({ navigation }) {
         {/**Header */}
         <Header>
           <Text style={{ fontSize: 20, fontWeight: "bold", color: theme.text }}>
-            Neues Todo
+            {language.task.title}
           </Text>
           <TouchableOpacity onPress={() => handleAddTask(task)}>
             {task ? (
@@ -62,7 +64,7 @@ export default function TaskScreen({ navigation }) {
               onChangeText={(text) => {
                 setTask(text);
               }}
-              placeholder={"Schreib eine Aufgabe"}
+              placeholder={language.task.newTask}
               placeholderTextColor={theme.secondary}
               selectionColor={theme.secondary}
             />
@@ -82,7 +84,9 @@ export default function TaskScreen({ navigation }) {
                 color: theme.text,
               }}
             >
-              Priorität - {String(priorityState).toUpperCase()}{" "}
+              {language.task.priority +
+                " - " +
+                String(priorityState).toUpperCase()}{" "}
             </Text>
             <View style={[{ padding: 5, flexDirection: "row" }]}>
               <TouchableOpacity

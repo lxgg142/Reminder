@@ -1,0 +1,72 @@
+{
+  "de": {
+    "task": {
+      "title": "Neue Aufgabe",
+      "newTask": "Schreib eine Aufgabe",
+      "priority": "Priorität"
+    },
+    "settings": {
+      "title": "Einstellungen",
+      "app": {
+        "title": "App Einstellungen",
+        "language": "App Sprache"
+      }
+    },
+    "info": {
+      "title": "Info",
+      "theme": {
+        "title": "Theme",
+        "current": "Aktuell"
+      },
+      "app": {
+        "title": "App Information",
+        "language": "Sprache",
+        "name": "Name",
+        "version": "Version",
+        "build": "Build Version"
+      },
+      "phone": {
+        "title": "Handy Information",
+        "brand": "Brand",
+        "model": "Model Name",
+        "modelID": "Model ID",
+        "odVersion": "OS Version"
+      }
+    }
+  },
+  "en": {
+    "task": {
+      "title": "New Todo",
+      "newTask": "Write a new Todo",
+      "priority": "Priority"
+    },
+    "settings": {
+      "title": "Settings",
+      "app": {
+        "title": "App Settings",
+        "language": "App Language"
+      }
+    },
+    "info": {
+      "title": "Info",
+      "theme": {
+        "title": "Theme",
+        "current": "Current"
+      },
+      "app": {
+        "title": "App Information",
+        "language": "Language",
+        "name": "Name",
+        "version": "Version",
+        "build": "Build Version"
+      },
+      "phone": {
+        "title": "Phone Information",
+        "brand": "Brand",
+        "model": "Model Name",
+        "modelID": "Model ID",
+        "odVersion": "OS Version"
+      }
+    }
+  }
+}
