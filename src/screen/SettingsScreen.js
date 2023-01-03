@@ -1,8 +1,7 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useContext } from "react";
 import { LanguageContext } from "../context/Language";
 import { ThemeContext } from "../context/ThemeContext";
 import Header from "../components/Header";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   SafeAreaView,
   StatusBar,
@@ -18,17 +17,6 @@ const SettingsScreen = ({ navigation }) => {
   const { language, languages, currentLanguage, changeLanguage } =
     useContext(LanguageContext);
 
-  const getData = async () => {
-    try {
-      const language = await AsyncStorage.getItem("language");
-      if (language != null) {
-        changeLanguage(JSON.parse(language));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <StatusBar />
@@ -43,11 +31,12 @@ const SettingsScreen = ({ navigation }) => {
         </Header>
         <List title={language.settings.app.language}>
           <SettingsItem
+            selected={currentLanguage == languages.de}
             title="Deutsch"
             onPress={() => changeLanguage(languages.de)}
             value={
               currentLanguage == languages.de ? (
-                <MaterialIcons name="check" size={20} color={theme.text} />
+                <MaterialIcons name="check" size={20} color={theme.secondary} />
               ) : (
                 <></>
               )
@@ -55,11 +44,38 @@ const SettingsScreen = ({ navigation }) => {
           />
           <Separator />
           <SettingsItem
+            selected={currentLanguage == languages.en}
             title="English"
             onPress={() => changeLanguage(languages.en)}
             value={
               currentLanguage == languages.en ? (
-                <MaterialIcons name="check" size={20} color={theme.text} />
+                <MaterialIcons name="check" size={20} color={theme.secondary} />
+              ) : (
+                <></>
+              )
+            }
+          />
+          <Separator />
+          <SettingsItem
+            selected={currentLanguage == languages.fra}
+            title="Français"
+            onPress={() => changeLanguage(languages.fra)}
+            value={
+              currentLanguage == languages.fra ? (
+                <MaterialIcons name="check" size={20} color={theme.secondary} />
+              ) : (
+                <></>
+              )
+            }
+          />
+          <Separator />
+          <SettingsItem
+            selected={currentLanguage == languages.ita}
+            title="Italiano"
+            onPress={() => changeLanguage(languages.ita)}
+            value={
+              currentLanguage == languages.ita ? (
+                <MaterialIcons name="check" size={20} color={theme.secondary} />
               ) : (
                 <></>
               )

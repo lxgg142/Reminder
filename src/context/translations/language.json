@@ -2,14 +2,14 @@
   "de": {
     "task": {
       "title": "Neue Aufgabe",
-      "newTask": "Schreib eine Aufgabe",
+      "newTask": "Erstelle eine neue Aufgabe",
       "priority": "Priorität"
     },
     "settings": {
       "title": "Einstellungen",
       "app": {
-        "title": "App Einstellungen",
-        "language": "App Sprache"
+        "title": "App-Einstellungen",
+        "language": "App-Sprache"
       }
     },
     "info": {
@@ -19,18 +19,18 @@
         "current": "Aktuell"
       },
       "app": {
-        "title": "App Information",
+        "title": "App-Information",
         "language": "Sprache",
         "name": "Name",
         "version": "Version",
-        "build": "Build Version"
+        "build": "Build-Version"
       },
       "phone": {
-        "title": "Handy Information",
+        "title": "Handy-Information",
         "brand": "Brand",
-        "model": "Model Name",
-        "modelID": "Model ID",
-        "odVersion": "OS Version"
+        "model": "Modelname",
+        "modelID": "Model-ID",
+        "osVersion": "OS Version"
       }
     }
   },
@@ -43,8 +43,8 @@
     "settings": {
       "title": "Settings",
       "app": {
-        "title": "App Settings",
-        "language": "App Language"
+        "title": "App-Settings",
+        "language": "App-Language"
       }
     },
     "info": {
@@ -54,18 +54,88 @@
         "current": "Current"
       },
       "app": {
-        "title": "App Information",
+        "title": "App-Information",
         "language": "Language",
         "name": "Name",
         "version": "Version",
-        "build": "Build Version"
+        "build": "Build-Version"
       },
       "phone": {
-        "title": "Phone Information",
+        "title": "Phone-Information",
         "brand": "Brand",
-        "model": "Model Name",
-        "modelID": "Model ID",
-        "odVersion": "OS Version"
+        "model": "Modelname",
+        "modelID": "Model-ID",
+        "osVersion": "OS Version"
+      }
+    }
+  },
+  "fra": {
+    "task": {
+      "title": "Nouvelle tâche",
+      "newTask": "Créer une nouvelle tâche",
+      "priority": "Priorité"
+    },
+    "settings": {
+      "title": "Réglages",
+      "app": {
+        "title": "App-Réglages",
+        "language": "App-Langue"
+      }
+    },
+    "info": {
+      "title": "Info",
+      "theme": {
+        "title": "App-Langue",
+        "current": "Actuellement"
+      },
+      "app": {
+        "title": "App-Renseignements",
+        "language": "Langue",
+        "name": "Name",
+        "version": "Version",
+        "build": "Build-Version"
+      },
+      "phone": {
+        "title": "Handy-Renseignements",
+        "brand": "Brand",
+        "model": "Modelname",
+        "modelID": "Model-ID",
+        "osVersion": "OS Version"
+      }
+    }
+  },
+  "ita": {
+    "task": {
+      "title": "Nuovo compito",
+      "newTask": "Scrivi un compito",
+      "priority": "Priorità"
+    },
+    "settings": {
+      "title": "Impostazioni",
+      "app": {
+        "title": "App-Impostazioni",
+        "language": "App-Linguaggio"
+      }
+    },
+    "info": {
+      "title": "Informazioni",
+      "theme": {
+        "title": "Tema",
+        "current": "Attualmente"
+      },
+      "app": {
+        "title": "App-Informazione",
+        "language": "Linguaggio",
+        "name": "Name",
+        "version": "Version",
+        "build": "Build-Version"
+      },
+      "phone": {
+        "title": "Handy-Informazione",
+        "brand": "Brand",
+        "model": "Modelname",
+        "modelID": "Model-ID",
+        "osVersion": "OS Version"
       }
     }
   }
