@@ -9,11 +9,9 @@ Simple-Todo ist eine to-do-Liste Anwendung, die es Benutzern ermöglicht, Eintr�
 - Markieren Sie Einträge als abgeschlossen, wenn sie erledigt wurden.
 - Unterstützung für Systemthemes
 - Markieren Sie Einträge nach Priorität.
-- Wähle deine bevorzugte Sprache! (Deutsch | English)
+- Wähle deine bevorzugte Sprache! (Deutsch | English | Français | Italiano)
 
 ## Changes
 
-(Nicht im aktuellen Release enthalten! Verfügbar ab V1.3.0)
-
 - Settings Screen
-- Multi Language support (Deutsch | English)
+- Multi Language support (Deutsch | English | Français | Italiano)
