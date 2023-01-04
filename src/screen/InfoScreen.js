@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { ThemeContext } from "../context/ThemeContext";
 import { MaterialIcons } from "@expo/vector-icons";
-import List, { ListItem, Separator, SettingsButton } from "../components/List";
+import List, { ListItem, Separator, Button } from "../components/List";
 import Header from "../components/Header";
 import * as Application from "expo-application";
 import * as Device from "expo-device";
@@ -77,7 +77,7 @@ export default function InfoScreen({ navigation }) {
               />
             </List>
             <List>
-              <SettingsButton
+              <Button
                 title={language.settings.title}
                 color={theme.del}
                 onPress={() => navigation.push("settings")}

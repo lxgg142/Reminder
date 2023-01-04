@@ -11,7 +11,7 @@ import {
   Pressable,
 } from "react-native";
 
-import React, { useContext } from "react";
+import React, { Component, useContext } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TaskContext } from "../context/TaskContext";
 import { ThemeContext } from "../context/ThemeContext";
@@ -45,6 +45,7 @@ export default function MainScreen({ navigation }) {
         {/**content */}
         <FlatList
           data={tasks}
+          extraData={tasks}
           ItemSeparatorComponent={() => {
             return <View style={{ backgroundColor: theme.sep, height: 1 }} />;
           }}
@@ -52,6 +53,11 @@ export default function MainScreen({ navigation }) {
           renderItem={({ item }, index) => {
             return (
               <TaskItem
+                onPress={() =>
+                  navigation.navigate("edit", {
+                    task: item,
+                  })
+                }
                 index={index + 1}
                 task={item}
                 deleteTask={() => deleteTask(item.id)}

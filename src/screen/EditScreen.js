@@ -1,59 +1,48 @@
-import {
-  View,
-  Text,
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-  StatusBar,
-} from "react-native";
-
 import React, { useContext, useState } from "react";
-import { MaterialIcons } from "@expo/vector-icons";
-import { TaskContext } from "../context/TaskContext";
+import { LanguageContext } from "../context/Language";
 import { ThemeContext } from "../context/ThemeContext";
 import Header from "../components/Header";
-import { LanguageContext } from "../context/Language";
-import List, { ListView, Separator } from "../components/List";
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import List, { Separator, Button, ListView } from "../components/List";
+import { TaskContext } from "../context/TaskContext";
 
-export default function TaskScreen({ navigation }) {
+const EditScreen = ({ navigation, route }) => {
+  const params = route.params;
+  const [task, setTask] = useState(params.task.label);
+  const [priorityState, setPriorityState] = useState(params.task.priority);
   const { theme, priority } = useContext(ThemeContext);
-  const [task, setTask] = useState("");
-
-  const { addTask, priorityState, changePriorityState } =
-    useContext(TaskContext);
-
-  const goBack = () => navigation.goBack();
   const { language } = useContext(LanguageContext);
+  const { changePriority, changeLabel } = useContext(TaskContext);
 
-  const handleAddTask = (value) => {
-    if (/^\s*$/.test(task)) return goBack();
-    addTask(value);
-    goBack();
-    changePriorityState(priority.default);
-    setTask("");
+  const taskID = params.task.id;
+
+  const handleSave = () => {
+    if (task != params.task.label) changeLabel(task, taskID);
+    if (priorityState != params.task.priority)
+      changePriority(priorityState, taskID);
+    navigation.goBack();
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{ flex: 1 }}>
       <StatusBar />
-      <KeyboardAvoidingView
-        style={styles.container}
-        {...(Platform.OS === "ios" ? { behavior: "padding" } : {})}
-      >
-        {/**Header */}
+      <View style={{ flex: 1 }}>
+        {/**header */}
         <Header>
           <Text style={{ fontSize: 20, fontWeight: "bold", color: theme.text }}>
-            {language.task.title}
+            {language.edit.title}
           </Text>
-          <TouchableOpacity onPress={() => handleAddTask(task)}>
-            {/^\s*$/.test(task) ? (
-              <MaterialIcons name="close" size={24} color={theme.text} />
-            ) : (
-              <MaterialIcons name="add" size={24} color={theme.text} />
-            )}
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <MaterialIcons name="arrow-back" size={24} color={theme.text} />
           </TouchableOpacity>
         </Header>
         {/**content */}
@@ -65,12 +54,12 @@ export default function TaskScreen({ navigation }) {
               onChangeText={(text) => {
                 setTask(text);
               }}
-              placeholder={language.task.newTask}
+              placeholder={language.edit.newTask}
               placeholderTextColor={theme.secondary}
               selectionColor={theme.secondary}
             />
           </List>
-          <List title={language.task.priority}>
+          <List title={language.edit.priority}>
             <ListView>
               <View style={[{ flexDirection: "row" }]}>
                 <TouchableOpacity
@@ -79,7 +68,7 @@ export default function TaskScreen({ navigation }) {
                     { backgroundColor: priority.default },
                   ]}
                   onPress={() => {
-                    changePriorityState(priority.default);
+                    setPriorityState(priority.default);
                   }}
                 >
                   {priorityState == priority.default ? (
@@ -92,7 +81,7 @@ export default function TaskScreen({ navigation }) {
                 <TouchableOpacity
                   style={[styles.colorItem, { backgroundColor: priority.low }]}
                   onPress={() => {
-                    changePriorityState(priority.low);
+                    setPriorityState(priority.low);
                   }}
                 >
                   {priorityState == priority.low ? (
@@ -108,7 +97,7 @@ export default function TaskScreen({ navigation }) {
                     { backgroundColor: priority.medium },
                   ]}
                   onPress={() => {
-                    changePriorityState(priority.medium);
+                    setPriorityState(priority.medium);
                   }}
                 >
                   {priorityState == priority.medium ? (
@@ -121,7 +110,7 @@ export default function TaskScreen({ navigation }) {
                 <TouchableOpacity
                   style={[styles.colorItem, { backgroundColor: priority.high }]}
                   onPress={() => {
-                    changePriorityState(priority.high);
+                    setPriorityState(priority.high);
                   }}
                 >
                   {priorityState == priority.high ? (
@@ -133,11 +122,21 @@ export default function TaskScreen({ navigation }) {
               </View>
             </ListView>
           </List>
+          <List>
+            <Button
+              title={language.edit.save}
+              color={theme.secondary}
+              onPress={() => {
+                handleSave();
+              }}
+            />
+          </List>
         </View>
-      </KeyboardAvoidingView>
+      </View>
     </SafeAreaView>
   );
-}
+};
+export default EditScreen;
 
 const styles = StyleSheet.create({
   inputField: {

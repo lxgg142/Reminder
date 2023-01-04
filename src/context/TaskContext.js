@@ -1,18 +1,13 @@
 import React, { createContext, useState } from "react";
 import TaskLoader from "./loader/TaskLoader";
+import { COLORS } from "../color";
 
 export const TaskContext = createContext();
 
 export const TaskProvider = ({ children }) => {
-  const prioritys = {
-    low: "low",
-    medium: "medium",
-    high: "high",
-    default: "default",
-  };
-
+  const priority = COLORS.priority;
   const [tasks, setTasks] = useState([]);
-  const [priorityState, setPriorityState] = useState(prioritys.default);
+  const [priorityState, setPriorityState] = useState(priority.default);
 
   const changePriorityState = (value) => {
     setPriorityState(value);
@@ -34,7 +29,27 @@ export const TaskProvider = ({ children }) => {
       priority: priorityState,
     };
     setTasks([...tasks, task]);
-    setPriorityState(prioritys.default);
+    setPriorityState(priority.default);
+  };
+
+  const changePriority = (key, taskID) => {
+    const task = tasks.map((item) => {
+      if (item.id == taskID) {
+        return { ...item, priority: key };
+      }
+      return item;
+    });
+    setTasks(task);
+  };
+
+  const changeLabel = (value, taskID) => {
+    const task = tasks.map((item) => {
+      if (item.id == taskID) {
+        return { ...item, label: value };
+      }
+      return item;
+    });
+    setTasks(task);
   };
 
   const markTask = (taskID) => {
@@ -84,7 +99,8 @@ export const TaskProvider = ({ children }) => {
         unMarkTask,
         deleteTask,
         clearAllTasks,
-        prioritys,
+        changePriority,
+        changeLabel,
         tasks: tasks,
         priorityState: priorityState,
         changePriorityState,

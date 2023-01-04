@@ -8,9 +8,15 @@ export const languages = {
 
 export const de = {
   task: {
-    title: "novoye zadaniye",
+    title: "Neue Aufgabe",
     newTask: "Erstelle eine neue Aufgabe",
     priority: "Priorität",
+  },
+  edit: {
+    title: "Aufgabe Bearbeiten",
+    newTask: "Bearbeite eine Aufgabe",
+    priority: "Priorität",
+    save: "Speichern",
   },
   settings: {
     title: "Einstellungen",
@@ -48,6 +54,12 @@ export const en = {
     newTask: "Write a new Todo",
     priority: "Priority",
   },
+  edit: {
+    title: "Edit Todo",
+    newTask: "Edit a Todo",
+    priority: "Priority",
+    save: "Save",
+  },
   settings: {
     title: "Settings",
     app: {
@@ -83,6 +95,12 @@ export const fra = {
     title: "Nouvelle tâche",
     newTask: "Créer une nouvelle tâche",
     priority: "Priorité",
+  },
+  edit: {
+    title: "Modifier la tâche",
+    newTask: "Modifier une tâche",
+    priority: "Priorité",
+    save: "sauver",
   },
   settings: {
     title: "Réglages",
@@ -120,6 +138,12 @@ export const ita = {
     newTask: "Scrivi un compito",
     priority: "Priorità",
   },
+  edit: {
+    title: "Modifica attività",
+    newTask: "Modifica un'attività",
+    priority: "Priorità",
+    save: "salvare",
+  },
   settings: {
     title: "Impostazioni",
     app: {
@@ -155,6 +179,12 @@ export const rus = {
     title: "новое задание",
     newTask: "Создать новую задачу",
     priority: "приоритет",
+  },
+  edit: {
+    title: "Изменить задачу",
+    newTask: "Изменить задачу",
+    priority: "приоритет",
+    save: "сохранить",
   },
   settings: {
     title: "настройки",

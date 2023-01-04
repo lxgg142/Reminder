@@ -45,6 +45,10 @@ export const ListItem = ({ title, value, color }) => {
   );
 };
 
+export const ListView = ({ children }) => {
+  return <View style={styles.view}>{children}</View>;
+};
+
 export const SettingsItem = ({ title, value, selected, onPress }) => {
   const { theme } = useContext(ThemeContext);
 
@@ -65,7 +69,7 @@ export const Separator = () => {
   return <View style={{ backgroundColor: theme.sep, height: 1 }} />;
 };
 
-export const SettingsButton = ({ title, color, onPress, children }) => {
+export const Button = ({ title, color, onPress, children }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <TouchableOpacity onPress={onPress} style={styles.settingsItem}>
@@ -95,6 +99,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     paddingVertical: 15,
     flexDirection: "row",
+    alignItems: "center",
+  },
+  view: {
+    minHeight: 50,
+    justifyContent: "center",
+    marginHorizontal: 15,
+    paddingVertical: 15,
     alignItems: "center",
   },
   settingsItem: {
