@@ -13,7 +13,5 @@ Simple-Todo ist eine to-do-Liste Anwendung, die es Benutzern ermöglicht, Eintr�
 
 ## Changes
 
-(Nicht im aktuellen Release enthalten! Verfügbar ab V1.3.0)
-
 - Settings Screen
 - Multi Language support (Deutsch | English | Français | Italiano)
