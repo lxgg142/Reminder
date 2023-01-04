@@ -1,10 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, { useContext } from "react";
-import { TaskContext } from "../context/TaskContext";
+import React from "react";
 
-export default function TaskLoader() {
-  const { tasks, setStoreTasks } = useContext(TaskContext);
-
+export default function TaskLoader({ tasks, setStoreTasks }) {
   React.useEffect(() => {
     getData();
   }, []);

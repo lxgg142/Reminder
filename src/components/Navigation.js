@@ -9,16 +9,11 @@ import SettingsScreen from "../screen/SettingsScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ThemeContext } from "../context/ThemeContext";
-import SettingsLoader from "../loader/SettingsLoader";
-import TaskLoader from "../loader/TaskLoader";
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   const { theme } = useContext(ThemeContext);
-
-  SettingsLoader();
-  TaskLoader();
 
   return (
     <NavigationContainer>

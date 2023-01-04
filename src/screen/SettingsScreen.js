@@ -81,6 +81,19 @@ const SettingsScreen = ({ navigation }) => {
               )
             }
           />
+          <Separator />
+          <SettingsItem
+            selected={currentLanguage == languages.rus}
+            title="Русский"
+            onPress={() => changeLanguage(languages.rus)}
+            value={
+              currentLanguage == languages.rus ? (
+                <MaterialIcons name="check" size={20} color={theme.secondary} />
+              ) : (
+                <></>
+              )
+            }
+          />
         </List>
       </View>
     </SafeAreaView>

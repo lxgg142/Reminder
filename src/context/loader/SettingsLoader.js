@@ -1,10 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, { useContext } from "react";
-import { LanguageContext } from "../context/Language";
+import React from "react";
 
-export default function SettingsLoader() {
-  const { currentLanguage, changeLanguage } = useContext(LanguageContext);
-
+export function LanguageLoader({ currentLanguage, changeLanguage }) {
   React.useEffect(() => {
     getData();
   }, []);

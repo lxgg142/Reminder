@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import TaskLoader from "./loader/TaskLoader";
 
 export const TaskContext = createContext();
 
@@ -20,6 +21,8 @@ export const TaskProvider = ({ children }) => {
   const setStoreTasks = (value) => {
     setTasks(value);
   };
+
+  TaskLoader({ tasks, setStoreTasks });
 
   const addTask = (value) => {
     if (value == null) return;

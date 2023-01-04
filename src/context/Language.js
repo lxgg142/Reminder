@@ -1,20 +1,17 @@
 import React, { createContext, useState } from "react";
+import { LanguageLoader } from "./loader/SettingsLoader";
 
 export const LanguageContext = createContext();
-const { de, en, fra, ita } = require("./translations/language.json");
+const { languages, de, en, fra, ita, rus } = require("./translations/language");
 
 export const LanguageProvider = ({ children }) => {
-  const languages = {
-    de: "de",
-    en: "en",
-    fra: "fra",
-    ita: "ita",
-  };
   const [currentLanguage, setCurrentLanguage] = useState(languages.en);
 
   const changeLanguage = (value) => {
     setCurrentLanguage(value);
   };
+
+  LanguageLoader({ currentLanguage, changeLanguage });
 
   const switchLanguage = () => {
     switch (currentLanguage) {
@@ -26,6 +23,8 @@ export const LanguageProvider = ({ children }) => {
         return fra;
       case languages.ita:
         return ita;
+      case languages.rus:
+        return rus;
       default:
         return en;
     }
