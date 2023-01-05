@@ -79,6 +79,7 @@ const EditScreen = ({ navigation, route }) => {
                     { color: theme.text, height: 150 },
                   ]}
                   multiline={true}
+                  textAlignVertical="top"
                   value={description}
                   onChangeText={(text) => {
                     setDescription(text);

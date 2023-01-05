@@ -80,6 +80,7 @@ export default function TaskScreen({ navigation }) {
               <TextInput
                 style={[styles.inputField, { color: theme.text, height: 150 }]}
                 multiline={true}
+                textAlignVertical="top"
                 value={description}
                 onChangeText={(text) => {
                   setDescription(text);
