@@ -14,10 +14,8 @@ Simple-Todo ist eine to-do-Liste Anwendung, die es Benutzern ermöglicht, Eintr�
 
 ## Changes
 
-(Erst ab release v1.4)
-
 - Bearbeiten von Aufgabe
 
-## Info (Erst ab release v1.4)
+## Info
 
 - Beim Installieren der Version bitte die alten Todo löschen!
