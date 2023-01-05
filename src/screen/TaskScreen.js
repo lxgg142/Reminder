@@ -1,36 +1,41 @@
 import {
   View,
   Text,
-  KeyboardAvoidingView,
-  Platform,
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
   TextInput,
   StatusBar,
+  Keyboard,
+  Pressable,
 } from "react-native";
+
+var moment = require("moment-timezone");
 
 import React, { useContext, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TaskContext } from "../context/TaskContext";
 import { ThemeContext } from "../context/ThemeContext";
 import Header from "../components/Header";
-import { LanguageContext } from "../context/Language";
-import List, { ListView, Separator } from "../components/List";
+import List, { ListItem, ListView, Separator } from "../components/List";
+import Content from "../components/Content";
+import { LanguageContext } from "../context/language";
 
 export default function TaskScreen({ navigation }) {
   const { theme, priority } = useContext(ThemeContext);
-  const [task, setTask] = useState("");
+  const { addTask } = useContext(TaskContext);
 
-  const { addTask, priorityState, changePriorityState } =
-    useContext(TaskContext);
+  const [task, setTask] = useState("");
+  const [description, setDescription] = useState("");
+  const [priorityState, changePriorityState] = useState(priority.default);
+  const date = moment().format("DD.MM.YYYY");
 
   const goBack = () => navigation.goBack();
   const { language } = useContext(LanguageContext);
 
-  const handleAddTask = (value) => {
+  const handleAddTask = (value, description, priority, date) => {
     if (/^\s*$/.test(task)) return goBack();
-    addTask(value);
+    addTask(value, description, priority, date);
     goBack();
     changePriorityState(priority.default);
     setTask("");
@@ -39,16 +44,17 @@ export default function TaskScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
-      <KeyboardAvoidingView
-        style={styles.container}
-        {...(Platform.OS === "ios" ? { behavior: "padding" } : {})}
-      >
-        {/**Header */}
+      {/**Header */}
+      <Pressable onPress={Keyboard.dismiss} accessible={false}>
         <Header>
           <Text style={{ fontSize: 20, fontWeight: "bold", color: theme.text }}>
             {language.task.title}
           </Text>
-          <TouchableOpacity onPress={() => handleAddTask(task)}>
+          <TouchableOpacity
+            onPress={() =>
+              handleAddTask(task, description, priorityState, date)
+            }
+          >
             {/^\s*$/.test(task) ? (
               <MaterialIcons name="close" size={24} color={theme.text} />
             ) : (
@@ -57,7 +63,7 @@ export default function TaskScreen({ navigation }) {
           </TouchableOpacity>
         </Header>
         {/**content */}
-        <View style={{ paddingHorizontal: 10, marginBottom: 20 }}>
+        <Content style={{ marginBottm: 20 }}>
           <List>
             <TextInput
               style={[styles.inputField, { color: theme.text }]}
@@ -69,6 +75,20 @@ export default function TaskScreen({ navigation }) {
               placeholderTextColor={theme.secondary}
               selectionColor={theme.secondary}
             />
+            <Separator />
+            <View style={{ paddingVertical: 10 }}>
+              <TextInput
+                style={[styles.inputField, { color: theme.text, height: 150 }]}
+                multiline={true}
+                value={description}
+                onChangeText={(text) => {
+                  setDescription(text);
+                }}
+                placeholder={"Description"}
+                placeholderTextColor={theme.secondary}
+                selectionColor={theme.secondary}
+              />
+            </View>
           </List>
           <List title={language.task.priority}>
             <ListView>
@@ -133,16 +153,20 @@ export default function TaskScreen({ navigation }) {
               </View>
             </ListView>
           </List>
-        </View>
-      </KeyboardAvoidingView>
+          <List>
+            <ListItem title={"Date"} value={date} />
+          </List>
+        </Content>
+      </Pressable>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   inputField: {
-    height: 50,
+    minHeight: 50,
     paddingHorizontal: 20,
+    overflow: "scroll",
   },
   colorItem: {
     height: 55,

@@ -20,9 +20,38 @@ export function LanguageLoader({ currentLanguage, changeLanguage }) {
 
   const getData = async () => {
     try {
-      const language = await AsyncStorage.getItem("language");
-      if (language != null) {
-        changeLanguage(JSON.parse(language));
+      const value = await AsyncStorage.getItem("language");
+      if (value != null) {
+        changeLanguage(JSON.parse(value));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function DateViewLoader({ dateView, changeDateView }) {
+  React.useEffect(() => {
+    getData();
+  }, []);
+
+  React.useEffect(() => {
+    storeData();
+  }, [dateView]);
+
+  const storeData = async () => {
+    try {
+      await AsyncStorage.setItem("dateView", JSON.stringify(dateView));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("dateView");
+      if (value != null) {
+        changeDateView(JSON.parse(value));
       }
     } catch (error) {
       console.log(error);

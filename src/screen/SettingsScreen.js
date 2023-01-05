@@ -1,21 +1,29 @@
 import React, { useContext } from "react";
-import { LanguageContext } from "../context/Language";
+import { LanguageContext } from "../context/language";
 import { ThemeContext } from "../context/ThemeContext";
 import Header from "../components/Header";
 import {
   SafeAreaView,
   StatusBar,
+  Switch,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import List, { Separator, SettingsItem } from "../components/List";
+import List, {
+  Button,
+  ListItem,
+  Separator,
+  SettingsItem,
+} from "../components/List";
+import { SettingsContext } from "../context/settings";
 
 const SettingsScreen = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   const { language, languages, currentLanguage, changeLanguage } =
     useContext(LanguageContext);
+  const { dateView, changeDateView } = useContext(SettingsContext);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -81,19 +89,29 @@ const SettingsScreen = ({ navigation }) => {
               )
             }
           />
-          <Separator />
-          <SettingsItem
-            selected={currentLanguage == languages.rus}
-            title="Русский"
-            onPress={() => changeLanguage(languages.rus)}
-            value={
-              currentLanguage == languages.rus ? (
-                <MaterialIcons name="check" size={20} color={theme.secondary} />
-              ) : (
-                <></>
-              )
-            }
-          />
+        </List>
+        <List title={language.settings.task.title}>
+          <View
+            style={{
+              minHeight: 50,
+              justifyContent: "space-between",
+              marginHorizontal: 15,
+              paddingVertical: 15,
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ color: theme.text }}>
+              {language.settings.task.showDate}
+            </Text>
+            <Switch
+              trackColor={{ false: theme.background, true: theme.secondary }}
+              thumbColor={theme.text}
+              ios_backgroundColor={theme.background}
+              onValueChange={changeDateView}
+              value={dateView}
+            />
+          </View>
         </List>
       </View>
     </SafeAreaView>

@@ -1,8 +1,8 @@
 import React, { createContext, useState } from "react";
-import { LanguageLoader } from "./loader/SettingsLoader";
+import { LanguageLoader } from "../loader/SettingsLoader";
 
 export const LanguageContext = createContext();
-const { languages, de, en, fra, ita, rus } = require("./translations/language");
+const { languages, de, en, fra, ita } = require("./translations/language");
 
 export const LanguageProvider = ({ children }) => {
   const [currentLanguage, setCurrentLanguage] = useState(languages.en);
@@ -23,8 +23,6 @@ export const LanguageProvider = ({ children }) => {
         return fra;
       case languages.ita:
         return ita;
-      case languages.rus:
-        return rus;
       default:
         return en;
     }

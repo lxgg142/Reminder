@@ -10,6 +10,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ThemeContext } from "../context/ThemeContext";
 import EditScreen from "../screen/EditScreen";
+import ViewTaskScreen from "../screen/ViewTaskScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -78,6 +79,18 @@ const Navigation = () => {
           component={EditScreen}
           options={{
             title: "Edit",
+            headerStyle: {
+              backgroundColor: theme.background,
+            },
+            headerTintColor: theme.text,
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="viewTask"
+          component={ViewTaskScreen}
+          options={{
+            title: "Simple Todo",
             headerStyle: {
               backgroundColor: theme.background,
             },

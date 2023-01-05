@@ -45,8 +45,8 @@ export const ListItem = ({ title, value, color }) => {
   );
 };
 
-export const ListView = ({ children }) => {
-  return <View style={styles.view}>{children}</View>;
+export const ListView = ({ children, style }) => {
+  return <View style={[styles.view, { ...style }]}>{children}</View>;
 };
 
 export const SettingsItem = ({ title, value, selected, onPress }) => {

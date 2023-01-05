@@ -14,7 +14,8 @@ import List, { ListItem, Separator, Button } from "../components/List";
 import Header from "../components/Header";
 import * as Application from "expo-application";
 import * as Device from "expo-device";
-import { LanguageContext } from "../context/Language";
+import Content from "../components/Content";
+import { LanguageContext } from "../context/language";
 
 export default function InfoScreen({ navigation }) {
   const { theme, scheme } = useContext(ThemeContext);
@@ -37,7 +38,7 @@ export default function InfoScreen({ navigation }) {
         </Header>
         {/**content */}
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ paddingHorizontal: 10, marginBottom: 20 }}>
+          <Content style={{ marginBottm: 20 }}>
             <List title={language.info.theme.title}>
               <ListItem
                 title={language.info.theme.current}
@@ -111,7 +112,7 @@ export default function InfoScreen({ navigation }) {
                 value={Device.osVersion}
               />
             </List>
-          </View>
+          </Content>
         </ScrollView>
       </View>
     </SafeAreaView>

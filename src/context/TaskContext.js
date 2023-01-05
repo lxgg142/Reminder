@@ -1,17 +1,10 @@
 import React, { createContext, useState } from "react";
 import TaskLoader from "./loader/TaskLoader";
-import { COLORS } from "../color";
 
 export const TaskContext = createContext();
 
 export const TaskProvider = ({ children }) => {
-  const priority = COLORS.priority;
   const [tasks, setTasks] = useState([]);
-  const [priorityState, setPriorityState] = useState(priority.default);
-
-  const changePriorityState = (value) => {
-    setPriorityState(value);
-  };
 
   const setStoreTasks = (value) => {
     setTasks(value);
@@ -19,23 +12,38 @@ export const TaskProvider = ({ children }) => {
 
   TaskLoader({ tasks, setStoreTasks });
 
-  const addTask = (value) => {
+  const getTask = (id) => {
+    return tasks.find((item) => item.id == id);
+  };
+
+  const addTask = (value, description, priority, date) => {
     if (value == null) return;
 
     const task = {
       id: Math.random(),
       label: value,
       completed: false,
-      priority: priorityState,
+      priority: priority,
+      description: description,
+      date: date,
     };
     setTasks([...tasks, task]);
-    setPriorityState(priority.default);
   };
 
-  const changePriority = (key, taskID) => {
+  const changePriority = (color, taskID) => {
     const task = tasks.map((item) => {
       if (item.id == taskID) {
-        return { ...item, priority: key };
+        return { ...item, priority: color };
+      }
+      return item;
+    });
+    setTasks(task);
+  };
+
+  const changeDescription = (description, taskID) => {
+    const task = tasks.map((item) => {
+      if (item.id == taskID) {
+        return { ...item, description: description };
       }
       return item;
     });
@@ -101,9 +109,9 @@ export const TaskProvider = ({ children }) => {
         clearAllTasks,
         changePriority,
         changeLabel,
+        getTask,
+        changeDescription,
         tasks: tasks,
-        priorityState: priorityState,
-        changePriorityState,
         setStoreTasks,
       }}
     >

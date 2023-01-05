@@ -5,7 +5,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
-  StyleSheet,
   TouchableOpacity,
   StatusBar,
   Pressable,
@@ -54,7 +53,7 @@ export default function MainScreen({ navigation }) {
             return (
               <TaskItem
                 onPress={() =>
-                  navigation.navigate("edit", {
+                  navigation.navigate("viewTask", {
                     task: item,
                   })
                 }

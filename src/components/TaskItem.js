@@ -8,10 +8,14 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { ThemeContext } from "../context/ThemeContext";
+import { SettingsContext } from "../context/settings";
 
 export default TaskItem = (props) => {
   const { theme, priority } = useContext(ThemeContext);
+  const { dateView } = useContext(SettingsContext);
   const priorityColor = props.task.priority || priority.default;
+
+  const date = props.task.date;
 
   return (
     <View
@@ -31,8 +35,20 @@ export default TaskItem = (props) => {
           )}
         </View>
       </TouchableOpacity>
-      <Pressable onPress={props.onPress} style={styles.task}>
+      <Pressable
+        onPress={props.onPress}
+        style={[styles.task, { marginVertical: 5 }]}
+      >
         <Text style={{ color: theme.text }}>{props.task.label}</Text>
+        {dateView ? (
+          date ? (
+            <Text style={{ color: theme.textlight, fontSize: 9 }}>{date}</Text>
+          ) : (
+            <></>
+          )
+        ) : (
+          <></>
+        )}
       </Pressable>
       <TouchableOpacity
         onPress={() => props.deleteTask()}

@@ -11,10 +11,20 @@ export const de = {
     title: "Neue Aufgabe",
     newTask: "Erstelle eine neue Aufgabe",
     priority: "Priorität",
+    date: "Datum",
+  },
+  view: {
+    title: "Aufgaben Informationen",
+    completed: "Erledigt",
+    priority: "Priorität",
+    created: "Erstellt",
+    edit: "Bearbeiten",
+    delete: "Löschen",
   },
   edit: {
-    title: "Aufgabe Bearbeiten",
-    newTask: "Bearbeite eine Aufgabe",
+    title: "Bearbeiten",
+    newTask: "Aufgabe Bearbeiten",
+    newDescription: "Beschreibung Bearbeiten",
     priority: "Priorität",
     save: "Speichern",
   },
@@ -23,6 +33,10 @@ export const de = {
     app: {
       title: "App-Einstellungen",
       language: "Bevorzugte Sprache",
+    },
+    task: {
+      title: "Aufgaben Einstellungen",
+      showDate: "Datum Anzeigen",
     },
   },
   info: {
@@ -53,10 +67,20 @@ export const en = {
     title: "New Todo",
     newTask: "Write a new Todo",
     priority: "Priority",
+    date: "date",
+  },
+  view: {
+    title: "Todo information",
+    completed: "Completed",
+    priority: "Priority",
+    created: "Created",
+    edit: "Edit",
+    delete: "Delete",
   },
   edit: {
-    title: "Edit Todo",
-    newTask: "Edit a Todo",
+    title: "Edit",
+    newTask: "Edit Todo",
+    newDescription: "Edit Description",
     priority: "Priority",
     save: "Save",
   },
@@ -65,6 +89,10 @@ export const en = {
     app: {
       title: "App-Settings",
       language: "Preferred Language",
+    },
+    task: {
+      title: "Todo Settings",
+      showDate: "Show date",
     },
   },
   info: {
@@ -95,10 +123,20 @@ export const fra = {
     title: "Nouvelle tâche",
     newTask: "Créer une nouvelle tâche",
     priority: "Priorité",
+    date: "Date",
+  },
+  view: {
+    title: "Informations sur les tâches",
+    completed: "Complété",
+    priority: "Priorité",
+    created: "Créé",
+    edit: "Éditer",
+    delete: "Supprimer",
   },
   edit: {
     title: "Modifier la tâche",
     newTask: "Modifier une tâche",
+    newDescription: "Descriptif Modifier",
     priority: "Priorité",
     save: "sauver",
   },
@@ -107,6 +145,10 @@ export const fra = {
     app: {
       title: "App-Réglages",
       language: "Langue Préférée",
+    },
+    task: {
+      title: "Paramètres des tâches",
+      showDate: "Afficher la date",
     },
   },
   info: {
@@ -137,10 +179,20 @@ export const ita = {
     title: "Nuovo compito",
     newTask: "Scrivi un compito",
     priority: "Priorità",
+    date: "data",
+  },
+  view: {
+    title: "informazioni sui compiti",
+    completed: "Completato",
+    priority: "Priorità",
+    created: "Creato",
+    edit: "Modificare",
+    delete: "Elimina",
   },
   edit: {
     title: "Modifica attività",
     newTask: "Modifica un'attività",
+    newDescription: "Descrizione Modifica",
     priority: "Priorità",
     save: "salvare",
   },
@@ -149,6 +201,10 @@ export const ita = {
     app: {
       title: "App-Impostazioni",
       language: "Lingua preferita",
+    },
+    task: {
+      title: "Impostazioni attività",
+      showDate: "Mostra data",
     },
   },
   info: {
@@ -166,48 +222,6 @@ export const ita = {
     },
     phone: {
       title: "Handy-Informazione",
-      brand: "Brand",
-      model: "Modelname",
-      modelID: "Model-ID",
-      osVersion: "OS Version",
-    },
-  },
-};
-
-export const rus = {
-  task: {
-    title: "новое задание",
-    newTask: "Создать новую задачу",
-    priority: "приоритет",
-  },
-  edit: {
-    title: "Изменить задачу",
-    newTask: "Изменить задачу",
-    priority: "приоритет",
-    save: "сохранить",
-  },
-  settings: {
-    title: "настройки",
-    app: {
-      title: "App-настройки",
-      language: "предпочитаемый язык",
-    },
-  },
-  info: {
-    title: "Информация",
-    theme: {
-      title: "внешность",
-      current: "В настоящее время",
-    },
-    app: {
-      title: "App-Информация",
-      language: "язык",
-      name: "Name",
-      version: "Version",
-      build: "Build-Version",
-    },
-    phone: {
-      title: "Handy-Информация",
       brand: "Brand",
       model: "Modelname",
       modelID: "Model-ID",
