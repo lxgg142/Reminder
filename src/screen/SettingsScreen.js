@@ -23,7 +23,8 @@ const SettingsScreen = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   const { language, languages, currentLanguage, changeLanguage } =
     useContext(LanguageContext);
-  const { dateView, changeDateView } = useContext(SettingsContext);
+  const { dateView, changeDateView, descriptionView, changeDescriptionView } =
+    useContext(SettingsContext);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -105,11 +106,39 @@ const SettingsScreen = ({ navigation }) => {
               {language.settings.task.showDate}
             </Text>
             <Switch
-              trackColor={{ false: theme.background, true: theme.secondary }}
-              thumbColor={theme.text}
+              trackColor={{
+                false: theme.backgroundlight,
+                true: theme.secondary,
+              }}
+              thumbColor={"#fff"}
               ios_backgroundColor={theme.background}
               onValueChange={changeDateView}
               value={dateView}
+            />
+          </View>
+          <Separator />
+          <View
+            style={{
+              minHeight: 50,
+              justifyContent: "space-between",
+              marginHorizontal: 15,
+              paddingVertical: 15,
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ color: theme.text }}>
+              {language.settings.task.description}
+            </Text>
+            <Switch
+              trackColor={{
+                false: theme.backgroundlight,
+                true: theme.secondary,
+              }}
+              thumbColor={"#fff"}
+              ios_backgroundColor={theme.background}
+              onValueChange={changeDescriptionView}
+              value={descriptionView}
             />
           </View>
         </List>

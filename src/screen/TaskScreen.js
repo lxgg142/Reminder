@@ -20,18 +20,24 @@ import Header from "../components/Header";
 import List, { ListItem, ListView, Separator } from "../components/List";
 import Content from "../components/Content";
 import { LanguageContext } from "../context/language";
+import { SettingsContext } from "../context/settings";
+
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 export default function TaskScreen({ navigation }) {
   const { theme, priority } = useContext(ThemeContext);
   const { addTask } = useContext(TaskContext);
+  const { descriptionView } = useContext(SettingsContext);
+
+  const [date, setDate] = useState(moment().format("DD.MM.YYYY"));
 
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
   const [priorityState, changePriorityState] = useState(priority.default);
-  const date = moment().format("DD.MM.YYYY");
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
   const goBack = () => navigation.goBack();
-  const { language } = useContext(LanguageContext);
+  const { language, currentLanguage } = useContext(LanguageContext);
 
   const handleAddTask = (value, description, priority, date) => {
     if (/^\s*$/.test(task)) return goBack();
@@ -41,11 +47,24 @@ export default function TaskScreen({ navigation }) {
     setTask("");
   };
 
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    hideDatePicker();
+    setDate(moment(date).format("DD.MM.YYYY"));
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
       {/**Header */}
-      <Pressable onPress={Keyboard.dismiss} accessible={false}>
+      <Pressable onPress={() => Keyboard.dismiss()}>
         <Header>
           <Text style={{ fontSize: 20, fontWeight: "bold", color: theme.text }}>
             {language.task.title}
@@ -75,21 +94,30 @@ export default function TaskScreen({ navigation }) {
               placeholderTextColor={theme.secondary}
               selectionColor={theme.secondary}
             />
-            <Separator />
-            <View style={{ paddingVertical: 10 }}>
-              <TextInput
-                style={[styles.inputField, { color: theme.text, height: 150 }]}
-                multiline={true}
-                textAlignVertical="top"
-                value={description}
-                onChangeText={(text) => {
-                  setDescription(text);
-                }}
-                placeholder={"Description"}
-                placeholderTextColor={theme.secondary}
-                selectionColor={theme.secondary}
-              />
-            </View>
+            {descriptionView ? (
+              <>
+                <Separator />
+                <View style={{ paddingVertical: 10 }}>
+                  <TextInput
+                    style={[
+                      styles.inputField,
+                      { color: theme.text, height: 150 },
+                    ]}
+                    multiline={true}
+                    textAlignVertical="top"
+                    value={description}
+                    onChangeText={(text) => {
+                      setDescription(text);
+                    }}
+                    placeholder={language.task.description}
+                    placeholderTextColor={theme.secondary}
+                    selectionColor={theme.secondary}
+                  />
+                </View>
+              </>
+            ) : (
+              <></>
+            )}
           </List>
           <List title={language.task.priority}>
             <ListView>
@@ -155,7 +183,21 @@ export default function TaskScreen({ navigation }) {
             </ListView>
           </List>
           <List>
-            <ListItem title={"Date"} value={date} />
+            <TouchableOpacity onPress={showDatePicker}>
+              <ListItem title={language.task.date} value={date} />
+            </TouchableOpacity>
+
+            <DateTimePickerModal
+              date={new Date()}
+              minimumDate={new Date()}
+              isVisible={isDatePickerVisible}
+              mode="date"
+              locale={currentLanguage}
+              onConfirm={handleConfirm}
+              onCancel={hideDatePicker}
+              confirmTextIOS={language.task.confirm}
+              cancelTextIOS={language.task.cancel}
+            />
           </List>
         </Content>
       </Pressable>

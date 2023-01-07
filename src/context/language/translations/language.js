@@ -11,7 +11,10 @@ export const de = {
     title: "Neue Aufgabe",
     newTask: "Erstelle eine neue Aufgabe",
     priority: "Priorität",
+    description: "Beschreibung",
     date: "Datum",
+    cancel: "Abbrechen",
+    confirm: "Bestätigen",
   },
   view: {
     title: "Aufgaben Informationen",
@@ -37,6 +40,7 @@ export const de = {
     task: {
       title: "Aufgaben Einstellungen",
       showDate: "Datum Anzeigen",
+      description: "Beschreibung",
     },
   },
   info: {
@@ -67,7 +71,10 @@ export const en = {
     title: "New Todo",
     newTask: "Write a new Todo",
     priority: "Priority",
-    date: "date",
+    description: "Description",
+    date: "Date",
+    cancel: "Cancel",
+    confirm: "Confirm",
   },
   view: {
     title: "Todo information",
@@ -93,6 +100,7 @@ export const en = {
     task: {
       title: "Todo Settings",
       showDate: "Show date",
+      description: "Description",
     },
   },
   info: {
@@ -123,7 +131,10 @@ export const fra = {
     title: "Nouvelle tâche",
     newTask: "Créer une nouvelle tâche",
     priority: "Priorité",
+    description: "Descriptif",
     date: "Date",
+    cancel: "Interrompre",
+    confirm: "confirmer",
   },
   view: {
     title: "Informations sur les tâches",
@@ -149,6 +160,7 @@ export const fra = {
     task: {
       title: "Paramètres des tâches",
       showDate: "Afficher la date",
+      description: "la description",
     },
   },
   info: {
@@ -178,8 +190,11 @@ export const ita = {
   task: {
     title: "Nuovo compito",
     newTask: "Scrivi un compito",
+    description: "Descrizione",
     priority: "Priorità",
     date: "data",
+    cancel: "abortire",
+    confirm: "Confermare",
   },
   view: {
     title: "informazioni sui compiti",
@@ -205,6 +220,7 @@ export const ita = {
     task: {
       title: "Impostazioni attività",
       showDate: "Mostra data",
+      description: "descrizione",
     },
   },
   info: {

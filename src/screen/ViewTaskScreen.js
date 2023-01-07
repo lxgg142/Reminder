@@ -14,12 +14,14 @@ import { MaterialIcons } from "@expo/vector-icons";
 import List, { Separator, Button, ListItem } from "../components/List";
 import { TaskContext } from "../context/TaskContext";
 import Content from "../components/Content";
+import { SettingsContext } from "../context/settings";
 
 const ViewTaskScreen = ({ navigation, route }) => {
   const params = route.params;
   const { theme } = useContext(ThemeContext);
   const { language } = useContext(LanguageContext);
   const { getTask, deleteTask, testTask } = useContext(TaskContext);
+  const { descriptionView } = useContext(SettingsContext);
 
   const taskID = params.task.id;
   const task = getTask(taskID);
@@ -47,10 +49,14 @@ const ViewTaskScreen = ({ navigation, route }) => {
           <List>
             <ListItem title={task.label} />
             {task.description ? (
-              <>
-                <Separator />
-                <ListItem title={task.description} />
-              </>
+              descriptionView ? (
+                <>
+                  <Separator />
+                  <ListItem title={task.description} />
+                </>
+              ) : (
+                <></>
+              )
             ) : (
               <></>
             )}
@@ -91,8 +97,14 @@ const ViewTaskScreen = ({ navigation, route }) => {
                 )}
               </View>
             </View>
-            <Separator />
-            <ListItem title={language.view.created} value={task.date} />
+            {task.date ? (
+              <>
+                <Separator />
+                <ListItem title={language.view.created} value={task.date} />
+              </>
+            ) : (
+              <></>
+            )}
           </List>
           <List>
             <Button

@@ -58,3 +58,38 @@ export function DateViewLoader({ dateView, changeDateView }) {
     }
   };
 }
+
+export function DescriptionViewLoader({
+  descriptionView,
+  changeDescriptionView,
+}) {
+  React.useEffect(() => {
+    getData();
+  }, []);
+
+  React.useEffect(() => {
+    storeData();
+  }, [descriptionView]);
+
+  const storeData = async () => {
+    try {
+      await AsyncStorage.setItem(
+        "descriptionView",
+        JSON.stringify(descriptionView)
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("descriptionView");
+      if (value != null) {
+        changeDescriptionView(JSON.parse(value));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

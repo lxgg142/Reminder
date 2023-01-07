@@ -50,54 +50,58 @@ const Navigation = () => {
             headerShown: false,
           }}
         />
-        <Stack.Screen
-          name="info"
-          component={InfoScreen}
-          options={{
-            title: "Info",
-            headerStyle: {
-              backgroundColor: theme.background,
-            },
-            headerTintColor: theme.text,
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="settings"
-          component={SettingsScreen}
-          options={{
-            title: "Settings",
-            headerStyle: {
-              backgroundColor: theme.background,
-            },
-            headerTintColor: theme.text,
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="edit"
-          component={EditScreen}
-          options={{
-            title: "Edit",
-            headerStyle: {
-              backgroundColor: theme.background,
-            },
-            headerTintColor: theme.text,
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="viewTask"
-          component={ViewTaskScreen}
-          options={{
-            title: "Simple Todo",
-            headerStyle: {
-              backgroundColor: theme.background,
-            },
-            headerTintColor: theme.text,
-            headerShown: false,
-          }}
-        />
+        <Stack.Group>
+          <Stack.Screen
+            name="info"
+            component={InfoScreen}
+            options={{
+              title: "Info",
+              headerStyle: {
+                backgroundColor: theme.background,
+              },
+              headerTintColor: theme.text,
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="settings"
+            component={SettingsScreen}
+            options={{
+              title: "Settings",
+              headerStyle: {
+                backgroundColor: theme.background,
+              },
+              headerTintColor: theme.text,
+              headerShown: false,
+            }}
+          />
+        </Stack.Group>
+        <Stack.Group>
+          <Stack.Screen
+            name="viewTask"
+            component={ViewTaskScreen}
+            options={{
+              title: "Simple Todo",
+              headerStyle: {
+                backgroundColor: theme.background,
+              },
+              headerTintColor: theme.text,
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="edit"
+            component={EditScreen}
+            options={{
+              title: "Edit",
+              headerStyle: {
+                backgroundColor: theme.background,
+              },
+              headerTintColor: theme.text,
+              headerShown: false,
+            }}
+          />
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );

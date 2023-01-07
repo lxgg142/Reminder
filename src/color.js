@@ -1,7 +1,9 @@
 export const COLORS = {
   dark: {
-    background: "#1e2124",
-    secondary: "#7289da",
+    background: "#23272A",
+    backgroundlight: "#2C2F33",
+    light: "#99AAB5",
+    secondary: "#5865F2",
     text: "#fff",
     textlight: "#424549",
     sep: "#282b30",
@@ -10,7 +12,9 @@ export const COLORS = {
   },
   light: {
     background: "#fff",
-    secondary: "#7289da",
+    backgroundlight: "#99aab5",
+    light: "#F6F6F6",
+    secondary: "#5865F2",
     text: "#2d3748",
     textlight: "#424549",
     sep: "#cbd5e0",

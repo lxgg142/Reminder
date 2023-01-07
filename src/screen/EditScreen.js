@@ -17,6 +17,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import List, { Separator, Button, ListView } from "../components/List";
 import { TaskContext } from "../context/TaskContext";
 import Content from "../components/Content";
+import { SettingsContext } from "../context/settings";
 
 const EditScreen = ({ navigation, route }) => {
   const params = route.params;
@@ -25,6 +26,7 @@ const EditScreen = ({ navigation, route }) => {
   const { language } = useContext(LanguageContext);
   const { changePriority, changeLabel, changeDescription, getTask } =
     useContext(TaskContext);
+  const { descriptionView } = useContext(SettingsContext);
 
   const taskID = params.task.id;
   const item = getTask(taskID);
@@ -35,7 +37,7 @@ const EditScreen = ({ navigation, route }) => {
 
   const handleSave = () => {
     if (task != item.task) {
-      if (!/^\s*$/.test(task)) changePriority(priorityState, taskID);
+      if (!/^\s*$/.test(task)) changeLabel(task, taskID);
     }
     if (description != item.description) changeDescription(description, taskID);
     if (priorityState != item.priority) changePriority(priorityState, taskID);
@@ -71,24 +73,30 @@ const EditScreen = ({ navigation, route }) => {
                 placeholderTextColor={theme.secondary}
                 selectionColor={theme.secondary}
               />
-              <Separator />
-              <View style={{ paddingVertical: 10 }}>
-                <TextInput
-                  style={[
-                    styles.inputField,
-                    { color: theme.text, height: 150 },
-                  ]}
-                  multiline={true}
-                  textAlignVertical="top"
-                  value={description}
-                  onChangeText={(text) => {
-                    setDescription(text);
-                  }}
-                  placeholder={language.edit.newDescription}
-                  placeholderTextColor={theme.secondary}
-                  selectionColor={theme.secondary}
-                />
-              </View>
+              {descriptionView ? (
+                <>
+                  <Separator />
+                  <View style={{ paddingVertical: 10 }}>
+                    <TextInput
+                      style={[
+                        styles.inputField,
+                        { color: theme.text, height: 150 },
+                      ]}
+                      multiline={true}
+                      textAlignVertical="top"
+                      value={description}
+                      onChangeText={(text) => {
+                        setDescription(text);
+                      }}
+                      placeholder={language.edit.newDescription}
+                      placeholderTextColor={theme.secondary}
+                      selectionColor={theme.secondary}
+                    />
+                  </View>
+                </>
+              ) : (
+                <></>
+              )}
             </List>
             <List title={language.edit.priority}>
               <ListView>
