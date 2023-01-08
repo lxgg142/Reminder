@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, StatusBar } from "react-native";
 import React, { useContext } from "react";
+import { StatusBar, StyleSheet, View } from "react-native";
 import { ThemeContext } from "../../context/theme";
 
 export default function Header({ children }) {

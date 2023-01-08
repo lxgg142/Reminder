@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 
-import MainScreen from "./screen/MainScreen";
-import TaskScreen from "./screen/TaskScreen";
-import InfoScreen from "./screen/settings/InfoScreen";
-import SettingsScreen from "./screen/settings/SettingsScreen";
 import EditScreen from "./screen/edit/EditScreen";
 import ViewTaskScreen from "./screen/edit/ViewTaskScreen";
+import MainScreen from "./screen/MainScreen";
+import InfoScreen from "./screen/settings/InfoScreen";
+import SettingsScreen from "./screen/settings/SettingsScreen";
+import TaskScreen from "./screen/TaskScreen";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";

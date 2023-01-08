@@ -1,6 +1,5 @@
+import { MaterialIcons } from "@expo/vector-icons";
 import React, { useContext } from "react";
-import { LanguageContext } from "../../context/language";
-import { ThemeContext } from "../../context/theme";
 import {
   SafeAreaView,
   StatusBar,
@@ -9,11 +8,12 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { LanguageContext } from "../../context/language";
 import { SettingsContext } from "../../context/settings";
+import { ThemeContext } from "../../context/theme";
+import Content from "../components/Content";
 import Header from "../components/Header";
 import List, { Separator, SettingsItem } from "../components/List";
-import Content from "../components/Content";
 
 const SettingsScreen = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);

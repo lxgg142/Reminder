@@ -1,7 +1,5 @@
-import React, { useContext, useState } from "react";
-import { LanguageContext } from "../../context/language";
-import { ThemeContext } from "../../context/theme";
-import Header from "../components/Header";
+import { MaterialIcons } from "@expo/vector-icons";
+import React, { useContext } from "react";
 import {
   SafeAreaView,
   StatusBar,
@@ -10,11 +8,13 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
-import List, { Separator, Button, ListItem } from "../components/List";
-import { TaskContext } from "../../context/task";
-import Content from "../components/Content";
+import { LanguageContext } from "../../context/language";
 import { SettingsContext } from "../../context/settings";
+import { TaskContext } from "../../context/task";
+import { ThemeContext } from "../../context/theme";
+import Content from "../components/Content";
+import Header from "../components/Header";
+import List, { Button, ListItem, Separator } from "../components/List";
 
 const ViewTaskScreen = ({ navigation, route }) => {
   const params = route.params;

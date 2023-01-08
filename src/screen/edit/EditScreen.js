@@ -1,6 +1,8 @@
+import { MaterialIcons } from "@expo/vector-icons";
 import React, { useContext, useState } from "react";
-import Header from "../components/Header";
 import {
+  Keyboard,
+  Pressable,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -8,16 +10,14 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Pressable,
-  Keyboard,
 } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
-import List, { Separator, Button, ListView } from "../components/List";
-import { TaskContext } from "../../context/task";
-import Content from "../components/Content";
-import { SettingsContext } from "../../context/settings";
 import { LanguageContext } from "../../context/language";
+import { SettingsContext } from "../../context/settings";
+import { TaskContext } from "../../context/task";
 import { ThemeContext } from "../../context/theme";
+import Content from "../components/Content";
+import Header from "../components/Header";
+import List, { Button, ListView, Separator } from "../components/List";
 
 const EditScreen = ({ navigation, route }) => {
   const params = route.params;

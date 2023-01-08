@@ -1,5 +1,5 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useContext } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { ThemeContext } from "../../context/theme";
 
 const List = ({ children, title }) => {

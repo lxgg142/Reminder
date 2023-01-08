@@ -1,21 +1,21 @@
-import React, { useContext } from "react";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  StatusBar,
-  TouchableOpacity,
-  ScrollView,
-  Platform,
-} from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import List, { ListItem, Separator, Button } from "../components/List";
-import Header from "../components/Header";
 import * as Application from "expo-application";
 import * as Device from "expo-device";
-import Content from "../components/Content";
+import React, { useContext } from "react";
+import {
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { LanguageContext } from "../../context/language";
 import { ThemeContext } from "../../context/theme";
+import Content from "../components/Content";
+import Header from "../components/Header";
+import List, { Button, ListItem, Separator } from "../components/List";
 
 export default function InfoScreen({ navigation }) {
   const { theme, scheme } = useContext(ThemeContext);

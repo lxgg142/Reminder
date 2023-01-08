@@ -3,5 +3,9 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.jsxSingleQuote": true,
   "prettier.singleQuote": true,
-  "prettier.singleAttributePerLine": true
+  "prettier.singleAttributePerLine": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  }
 }

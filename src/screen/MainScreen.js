@@ -1,21 +1,21 @@
 import {
-  View,
-  Text,
   FlatList,
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
-  TouchableOpacity,
-  StatusBar,
   Pressable,
+  SafeAreaView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
-import React, { useContext } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
+import React, { useContext } from "react";
 import { TaskContext } from "../context/task";
-import TaskItem from "./components/TaskItem";
-import Header from "./components/Header";
 import { ThemeContext } from "../context/theme";
+import Header from "./components/Header";
+import TaskItem from "./components/TaskItem";
 
 export default function MainScreen({ navigation }) {
   const { theme } = useContext(ThemeContext);
