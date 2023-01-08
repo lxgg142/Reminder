@@ -8,14 +8,14 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
-import { ThemeContext } from "../context/ThemeContext";
 import { MaterialIcons } from "@expo/vector-icons";
 import List, { ListItem, Separator, Button } from "../components/List";
 import Header from "../components/Header";
 import * as Application from "expo-application";
 import * as Device from "expo-device";
 import Content from "../components/Content";
-import { LanguageContext } from "../context/language";
+import { LanguageContext } from "../../context/language";
+import { ThemeContext } from "../../context/theme";
 
 export default function InfoScreen({ navigation }) {
   const { theme, scheme } = useContext(ThemeContext);

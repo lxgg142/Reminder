@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import TaskLoader from "./loader/TaskLoader";
+import TaskLoader from "../loader/TaskLoader";
 
 export const TaskContext = createContext();
 

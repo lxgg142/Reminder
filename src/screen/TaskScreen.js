@@ -14,11 +14,11 @@ var moment = require("moment-timezone");
 
 import React, { useContext, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
-import { TaskContext } from "../context/TaskContext";
-import { ThemeContext } from "../context/ThemeContext";
-import Header from "../components/Header";
-import List, { ListItem, ListView, Separator } from "../components/List";
-import Content from "../components/Content";
+import { TaskContext } from "../context/task";
+import { ThemeContext } from "../context/theme";
+import Header from "./components/Header";
+import List, { ListItem, ListView, Separator } from "./components/List";
+import Content from "./components/Content";
 import { LanguageContext } from "../context/language";
 import { SettingsContext } from "../context/settings";
 
@@ -82,124 +82,7 @@ export default function TaskScreen({ navigation }) {
           </TouchableOpacity>
         </Header>
         {/**content */}
-        <Content style={{ marginBottm: 20 }}>
-          <List>
-            <TextInput
-              style={[styles.inputField, { color: theme.text }]}
-              value={task}
-              onChangeText={(text) => {
-                setTask(text);
-              }}
-              placeholder={language.task.newTask}
-              placeholderTextColor={theme.secondary}
-              selectionColor={theme.secondary}
-            />
-            {descriptionView ? (
-              <>
-                <Separator />
-                <View style={{ paddingVertical: 10 }}>
-                  <TextInput
-                    style={[
-                      styles.inputField,
-                      { color: theme.text, height: 150 },
-                    ]}
-                    multiline={true}
-                    textAlignVertical="top"
-                    value={description}
-                    onChangeText={(text) => {
-                      setDescription(text);
-                    }}
-                    placeholder={language.task.description}
-                    placeholderTextColor={theme.secondary}
-                    selectionColor={theme.secondary}
-                  />
-                </View>
-              </>
-            ) : (
-              <></>
-            )}
-          </List>
-          <List title={language.task.priority}>
-            <ListView>
-              <View style={[{ flexDirection: "row" }]}>
-                <TouchableOpacity
-                  style={[
-                    styles.colorItem,
-                    { backgroundColor: priority.default },
-                  ]}
-                  onPress={() => {
-                    changePriorityState(priority.default);
-                  }}
-                >
-                  {priorityState == priority.default ? (
-                    <MaterialIcons name="check" size={28} color={theme.text} />
-                  ) : (
-                    <></>
-                  )}
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={[styles.colorItem, { backgroundColor: priority.low }]}
-                  onPress={() => {
-                    changePriorityState(priority.low);
-                  }}
-                >
-                  {priorityState == priority.low ? (
-                    <MaterialIcons name="check" size={28} color={theme.text} />
-                  ) : (
-                    <></>
-                  )}
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={[
-                    styles.colorItem,
-                    { backgroundColor: priority.medium },
-                  ]}
-                  onPress={() => {
-                    changePriorityState(priority.medium);
-                  }}
-                >
-                  {priorityState == priority.medium ? (
-                    <MaterialIcons name="check" size={28} color={theme.text} />
-                  ) : (
-                    <></>
-                  )}
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={[styles.colorItem, { backgroundColor: priority.high }]}
-                  onPress={() => {
-                    changePriorityState(priority.high);
-                  }}
-                >
-                  {priorityState == priority.high ? (
-                    <MaterialIcons name="check" size={28} color={theme.text} />
-                  ) : (
-                    <></>
-                  )}
-                </TouchableOpacity>
-              </View>
-            </ListView>
-          </List>
-          <List>
-            <TouchableOpacity onPress={showDatePicker}>
-              <ListItem title={language.task.date} value={date} />
-            </TouchableOpacity>
-
-            <DateTimePickerModal
-              date={new Date()}
-              minimumDate={new Date()}
-              isVisible={isDatePickerVisible}
-              mode="date"
-              locale={currentLanguage}
-              onConfirm={handleConfirm}
-              onCancel={hideDatePicker}
-              confirmTextIOS={language.task.confirm}
-              cancelTextIOS={language.task.cancel}
-            />
-          </List>
-        </Content>
+        <Content style={{ marginBottm: 20 }}></Content>
       </Pressable>
     </SafeAreaView>
   );

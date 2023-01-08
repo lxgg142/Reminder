@@ -1,6 +1,4 @@
 import React, { useContext, useState } from "react";
-import { LanguageContext } from "../context/language";
-import { ThemeContext } from "../context/ThemeContext";
 import Header from "../components/Header";
 import {
   SafeAreaView,
@@ -15,9 +13,11 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import List, { Separator, Button, ListView } from "../components/List";
-import { TaskContext } from "../context/TaskContext";
+import { TaskContext } from "../../context/task";
 import Content from "../components/Content";
-import { SettingsContext } from "../context/settings";
+import { SettingsContext } from "../../context/settings";
+import { LanguageContext } from "../../context/language";
+import { ThemeContext } from "../../context/theme";
 
 const EditScreen = ({ navigation, route }) => {
   const params = route.params;

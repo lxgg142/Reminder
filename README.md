@@ -14,4 +14,4 @@ Simple-Todo ist eine to-do-Liste Anwendung, die es Benutzern ermöglicht, Eintr�
 
 ## Changes
 
-- Aufgaben Datum
+- Projekt reorganisation für besseren überblick (LOL)

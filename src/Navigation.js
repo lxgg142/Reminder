@@ -1,16 +1,15 @@
 import React, { useContext } from "react";
 
-import MainScreen from "../screen/MainScreen";
-import SplashScreen from "../screen/SplashScreen";
-import TaskScreen from "../screen/TaskScreen";
-import InfoScreen from "../screen/InfoScreen";
-import SettingsScreen from "../screen/SettingsScreen";
+import MainScreen from "./screen/MainScreen";
+import TaskScreen from "./screen/TaskScreen";
+import InfoScreen from "./screen/settings/InfoScreen";
+import SettingsScreen from "./screen/settings/SettingsScreen";
+import EditScreen from "./screen/edit/EditScreen";
+import ViewTaskScreen from "./screen/edit/ViewTaskScreen";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { ThemeContext } from "../context/ThemeContext";
-import EditScreen from "../screen/EditScreen";
-import ViewTaskScreen from "../screen/ViewTaskScreen";
+import { ThemeContext } from "./context/theme";
 
 const Stack = createNativeStackNavigator();
 

@@ -10,12 +10,12 @@ import {
   Pressable,
 } from "react-native";
 
-import React, { Component, useContext } from "react";
+import React, { useContext } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
-import { TaskContext } from "../context/TaskContext";
-import { ThemeContext } from "../context/ThemeContext";
-import TaskItem from "../components/TaskItem";
-import Header from "../components/Header";
+import { TaskContext } from "../context/task";
+import TaskItem from "./components/TaskItem";
+import Header from "./components/Header";
+import { ThemeContext } from "../context/theme";
 
 export default function MainScreen({ navigation }) {
   const { theme } = useContext(ThemeContext);

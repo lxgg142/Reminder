@@ -7,8 +7,8 @@ import {
   Pressable,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { ThemeContext } from "../context/ThemeContext";
-import { SettingsContext } from "../context/settings";
+import { ThemeContext } from "../../context/theme";
+import { SettingsContext } from "../../context/settings";
 
 export default TaskItem = (props) => {
   const { theme, priority } = useContext(ThemeContext);
