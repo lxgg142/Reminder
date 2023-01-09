@@ -19,6 +19,7 @@ import { ThemeContext } from "../context/theme";
 import List, { ListItem, ListView, Separator } from "../screen/components/List";
 import Content from "./components/Content";
 import Header from "./components/Header";
+import ColorPicker, { ColorItem } from "./components/items/colorPicker";
 
 export default function TaskScreen({ navigation }) {
   const { theme, priority } = useContext(ThemeContext);
@@ -118,65 +119,31 @@ export default function TaskScreen({ navigation }) {
           </List>
           <List title={language.task.priority}>
             <ListView>
-              <View style={[{ flexDirection: "row" }]}>
-                <TouchableOpacity
-                  style={[
-                    styles.colorItem,
-                    { backgroundColor: priority.default },
-                  ]}
-                  onPress={() => {
-                    changePriorityState(priority.default);
-                  }}
-                >
-                  {priorityState == priority.default ? (
-                    <MaterialIcons name="check" size={28} color={theme.text} />
-                  ) : (
-                    <></>
-                  )}
-                </TouchableOpacity>
+              <ColorPicker>
+                <ColorItem
+                  onColor={priorityState == priority.default}
+                  onPress={() => changePriorityState(priority.default)}
+                  color={priority.default}
+                />
 
-                <TouchableOpacity
-                  style={[styles.colorItem, { backgroundColor: priority.low }]}
-                  onPress={() => {
-                    changePriorityState(priority.low);
-                  }}
-                >
-                  {priorityState == priority.low ? (
-                    <MaterialIcons name="check" size={28} color={theme.text} />
-                  ) : (
-                    <></>
-                  )}
-                </TouchableOpacity>
+                <ColorItem
+                  onColor={priorityState == priority.low}
+                  onPress={() => changePriorityState(priority.low)}
+                  color={priority.low}
+                />
 
-                <TouchableOpacity
-                  style={[
-                    styles.colorItem,
-                    { backgroundColor: priority.medium },
-                  ]}
-                  onPress={() => {
-                    changePriorityState(priority.medium);
-                  }}
-                >
-                  {priorityState == priority.medium ? (
-                    <MaterialIcons name="check" size={28} color={theme.text} />
-                  ) : (
-                    <></>
-                  )}
-                </TouchableOpacity>
+                <ColorItem
+                  onColor={priorityState == priority.medium}
+                  onPress={() => changePriorityState(priority.medium)}
+                  color={priority.medium}
+                />
 
-                <TouchableOpacity
-                  style={[styles.colorItem, { backgroundColor: priority.high }]}
-                  onPress={() => {
-                    changePriorityState(priority.high);
-                  }}
-                >
-                  {priorityState == priority.high ? (
-                    <MaterialIcons name="check" size={28} color={theme.text} />
-                  ) : (
-                    <></>
-                  )}
-                </TouchableOpacity>
-              </View>
+                <ColorItem
+                  onColor={priorityState == priority.high}
+                  onPress={() => changePriorityState(priority.high)}
+                  color={priority.high}
+                />
+              </ColorPicker>
             </ListView>
           </List>
           <List>
