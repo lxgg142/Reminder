@@ -41,7 +41,7 @@ const ViewTaskScreen = ({ navigation, route }) => {
             {language.view.title}
           </Text>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <MaterialIcons name="arrow-back" size={24} color={theme.text} />
+            <MaterialIcons name={"arrow-back"} size={24} color={theme.text} />
           </TouchableOpacity>
         </Header>
         {/**content */}
@@ -91,7 +91,7 @@ const ViewTaskScreen = ({ navigation, route }) => {
                 }}
               >
                 {task.completed ? (
-                  <MaterialIcons name="check" size={18} color={theme.ico} />
+                  <MaterialIcons name={"check"} size={18} color={theme.ico} />
                 ) : (
                   <></>
                 )}

@@ -38,7 +38,7 @@ export default function MainScreen({ navigation }) {
             </Text>
           </Pressable>
           <TouchableOpacity onPress={() => navigation.push("task")}>
-            <MaterialIcons name="add" size={24} color={theme.text} />
+            <MaterialIcons name={"add"} size={24} color={theme.text} />
           </TouchableOpacity>
         </Header>
         {/**content */}

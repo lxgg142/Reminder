@@ -33,7 +33,7 @@ export default function InfoScreen({ navigation }) {
             {language.info.title}
           </Text>
           <TouchableOpacity onPress={() => goBack()}>
-            <MaterialIcons name={"close"} size={24} color={theme.text} />
+            <MaterialIcons name={"arrow-back"} size={24} color={theme.text} />
           </TouchableOpacity>
         </Header>
         {/**content */}

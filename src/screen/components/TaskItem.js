@@ -29,7 +29,7 @@ export default TaskItem = (props) => {
       <TouchableOpacity onPress={() => props.markTask()} style={styles.button}>
         <View style={[styles.square, { backgroundColor: priorityColor }]}>
           {props.task.completed ? (
-            <MaterialIcons name="check" size={18} color={theme.ico} />
+            <MaterialIcons name={"check"} size={18} color={theme.ico} />
           ) : (
             <></>
           )}

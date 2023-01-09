@@ -31,7 +31,7 @@ const SettingsScreen = ({ navigation }) => {
             {language.settings.title}
           </Text>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <MaterialIcons name="arrow-back" size={24} color={theme.text} />
+            <MaterialIcons name={"close"} size={24} color={theme.text} />
           </TouchableOpacity>
         </Header>
         <Content>

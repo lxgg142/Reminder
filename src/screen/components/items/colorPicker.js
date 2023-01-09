@@ -16,7 +16,7 @@ export function ColorItem({ color, onColor, onPress }) {
       onPress={onPress}
     >
       {onColor ? (
-        <MaterialIcons name="check" size={28} color={theme.text} />
+        <MaterialIcons name={"check"} size={28} color={theme.text} />
       ) : (
         <></>
       )}

@@ -73,9 +73,9 @@ export default function TaskScreen({ navigation }) {
             }
           >
             {/^\s*$/.test(task) ? (
-              <MaterialIcons name="close" size={24} color={theme.text} />
+              <MaterialIcons name={"close"} size={24} color={theme.text} />
             ) : (
-              <MaterialIcons name="add" size={24} color={theme.text} />
+              <MaterialIcons name={"add"} size={24} color={theme.text} />
             )}
           </TouchableOpacity>
         </Header>

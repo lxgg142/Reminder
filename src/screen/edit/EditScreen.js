@@ -58,7 +58,7 @@ const EditScreen = ({ navigation, route }) => {
               {language.edit.title}
             </Text>
             <TouchableOpacity onPress={() => navigation.goBack()}>
-              <MaterialIcons name="arrow-back" size={24} color={theme.text} />
+              <MaterialIcons name="close" size={24} color={theme.text} />
             </TouchableOpacity>
           </Header>
           {/**content */}
