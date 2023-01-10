@@ -31,33 +31,36 @@ export const TaskProvider = ({ children }) => {
   };
 
   const changePriority = (color, taskID) => {
-    const task = tasks.map((item) => {
-      if (item.id == taskID) {
-        return { ...item, priority: color };
-      }
-      return item;
-    });
-    setTasks(task);
+    setTasks((previousTasks) =>
+      previousTasks.map((item) => {
+        if (item.id == taskID) {
+          return { ...item, priority: color };
+        }
+        return item;
+      })
+    );
   };
 
   const changeDescription = (description, taskID) => {
-    const task = tasks.map((item) => {
-      if (item.id == taskID) {
-        return { ...item, description: description };
-      }
-      return item;
-    });
-    setTasks(task);
+    setTasks((previousTasks) =>
+      previousTasks.map((item) => {
+        if (item.id == taskID) {
+          return { ...item, description: description };
+        }
+        return item;
+      })
+    );
   };
 
   const changeLabel = (value, taskID) => {
-    const task = tasks.map((item) => {
-      if (item.id == taskID) {
-        return { ...item, label: value };
-      }
-      return item;
-    });
-    setTasks(task);
+    setTasks((previousTasks) =>
+      previousTasks.map((item) => {
+        if (item.id == taskID) {
+          return { ...item, label: value };
+        }
+        return item;
+      })
+    );
   };
 
   const markTask = (taskID) => {

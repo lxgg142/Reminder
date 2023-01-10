@@ -36,12 +36,10 @@ const EditScreen = ({ navigation, route }) => {
   const [priorityState, setPriorityState] = useState(item.priority);
   const [description, setDescription] = useState(item.description);
 
-  const handleSave = () => {
-    if (task != item.task) {
-      if (!/^\s*$/.test(task)) changeLabel(task, taskID);
-    }
-    if (description != item.description) changeDescription(description, taskID);
-    if (priorityState != item.priority) changePriority(priorityState, taskID);
+  const handleSave = (task, description, priorityState, taskID) => {
+    changeLabel(task, taskID);
+    changeDescription(description, taskID);
+    changePriority(priorityState, taskID);
     navigation.goBack();
   };
 
@@ -133,7 +131,7 @@ const EditScreen = ({ navigation, route }) => {
                 title={language.edit.save}
                 color={theme.secondary}
                 onPress={() => {
-                  handleSave();
+                  handleSave(task, description, priorityState, taskID);
                 }}
               />
             </List>
