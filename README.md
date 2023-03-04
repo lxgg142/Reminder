@@ -11,7 +11,3 @@ Simple-Todo ist eine to-do-Liste Anwendung, die es Benutzern ermöglicht, Eintr�
 - Bearbeiten Sie Aufgabe.
 - Markieren Sie Einträge nach Priorität.
 - Wähle deine bevorzugte Sprache! (Deutsch | English | Français | Italiano )
-
-## Changes
-
-- Projekt reorganisation für besseren überblick (LOL)
